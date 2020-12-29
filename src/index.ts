@@ -61,12 +61,13 @@ class CognifitSdk {
   }
 
   private printIframe(type: string, key: string): void {
-    document.body.insertAdjacentHTML('beforeend',
+    document.body.insertAdjacentHTML(
+      'beforeend',
       '<iframe id="cognifitSdkIframe" style="' +
-      this.getIframeStyle() +
-      '" title="CogniFit Access" width="100%" height="100%" src="' +
-      this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" onload="window.fncIdentifierCognifitSdkRef.component.iframeUrlChanged();"></iframe>'
+        this.getIframeStyle() +
+        '" title="CogniFit Access" width="100%" height="100%" src="' +
+        this.cognifitSdkConfig.getIframeUrl(type, key) +
+        '" onload="window.fncIdentifierCognifitSdkRef.component.iframeUrlChanged();"></iframe>',
     );
   }
 
