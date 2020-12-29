@@ -23,7 +23,7 @@ class CognifitSdk {
       const windowIndex = 'fncIdentifierCognifitSdkRef';
       // @ts-ignore
       window[windowIndex] = {
-        component: this
+        component: this,
       };
       this.initialized = true;
     }
