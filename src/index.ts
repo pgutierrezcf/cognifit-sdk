@@ -45,8 +45,8 @@ class CognifitSdk {
   }
 
   public iframeUrlChanged(): void {
-    alert(11111);
-    const cognifitAccessIframe = document.getElementById('cognifitAccess');
+    alert(33333);
+    const cognifitAccessIframe = document.getElementById('cognifitSdkIframe');
     // tslint:disable-next-line:no-console
     console.log(cognifitAccessIframe);
     try {
@@ -62,11 +62,11 @@ class CognifitSdk {
 
   private printIframe(type: string, key: string): void {
     document.body.innerHTML +=
-      '<iframe id="cognifitAccess" style="' +
+      '<iframe id="cognifitSdkIframe" style="' +
       this.getIframeStyle() +
       '" title="CogniFit Access" width="100%" height="100%" src="' +
       this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" onload="console.log(1111); console.log(window.fncIdentifierCognifitSdkRef.component.cognifitSdkError.getError())"></iframe>';
+      '" onload="console.log(1111); console.log(window.fncIdentifierCognifitSdkRef.component.iframeUrlChanged())"></iframe>';
   }
 
   private getIframeStyle(): string {
