@@ -41,7 +41,7 @@ class CognifitSdk {
 
   public iframeUrlChanged(): void {
     alert(11111);
-    const cognifitAccessIframe = document.getElementById('cognifitAccess')
+    const cognifitAccessIframe = document.getElementById('cognifitAccess');
     // tslint:disable-next-line:no-console
     console.log(cognifitAccessIframe);
     try {

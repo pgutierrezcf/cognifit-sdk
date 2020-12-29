@@ -1,6 +1,6 @@
 {
   "name": "@DaniOlivares/cognifit-sdk",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Connect your app with CogniFit",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
