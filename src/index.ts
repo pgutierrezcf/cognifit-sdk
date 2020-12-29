@@ -20,6 +20,9 @@ class CognifitSdk {
     if (!this.cognifitSdkValidator.validateConfig(this.cognifitSdkConfig, this.cognifitSdkError)) {
       this.initialized = false;
     } else {
+      window['fncIdentifierCognifitSdkRef'] = {
+        component: this
+      };
       this.initialized = true;
     }
     return this.initialized;
@@ -61,7 +64,7 @@ class CognifitSdk {
       this.getIframeStyle() +
       '" title="CogniFit Access" width="100%" height="100%" src="' +
       this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" onload="console.log(1111); console.log(window.fncIdentifierCompRef.component.cognifitSdkError.getError())"></iframe>';
+      '" onload="console.log(1111); console.log(window.fncIdentifierCognifitSdkRef.component.cognifitSdkError.getError())"></iframe>';
   }
 
   private getIframeStyle(): string {
