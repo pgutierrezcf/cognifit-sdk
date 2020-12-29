@@ -61,7 +61,7 @@ class CognifitSdk {
       this.getIframeStyle() +
       '" title="CogniFit Access" width="100%" height="100%" src="' +
       this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" (load)="cognifitSdk.iframeUrlChanged(this)"></iframe>';
+      '" (load)="console.log(1111); cognifitSdk.iframeUrlChanged()"></iframe>';
   }
 
   private getIframeStyle(): string {
