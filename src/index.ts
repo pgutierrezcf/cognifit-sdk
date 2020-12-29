@@ -45,7 +45,6 @@ class CognifitSdk {
   }
 
   public iframeUrlChanged(): void {
-    alert(33333);
     const cognifitAccessIframe = document.getElementById('cognifitSdkIframe');
     // tslint:disable-next-line:no-console
     console.log(cognifitAccessIframe);
@@ -54,6 +53,7 @@ class CognifitSdk {
       const cognifitAccessIframeHref = cognifitAccessIframe.contentWindow.location.href;
       // tslint:disable-next-line:no-console
       console.log(cognifitAccessIframeHref);
+      cognifitAccessIframe?.remove();
     } catch (e) {
       // tslint:disable-next-line:no-console
       console.log('ARRRRRRG');
@@ -66,12 +66,13 @@ class CognifitSdk {
       this.getIframeStyle() +
       '" title="CogniFit Access" width="100%" height="100%" src="' +
       this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" onload="console.log(1111); console.log(window.fncIdentifierCognifitSdkRef.component.iframeUrlChanged())"></iframe>';
+      '" onload="window.fncIdentifierCognifitSdkRef.component.iframeUrlChanged();"></iframe>';
   }
 
   private getIframeStyle(): string {
     return 'position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden;';
   }
+
 }
 
 export const cognifitSdk = new CognifitSdk();
