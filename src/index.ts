@@ -42,12 +42,12 @@ class CognifitSdk {
   public iframeUrlChanged(thisIframe: any): void {
     // tslint:disable-next-line:no-console
     console.log(thisIframe);
-    try{
+    try {
       // tslint:disable-next-line:no-console
       console.log(thisIframe.contentWindow.location.href);
-    }catch(e){
+    } catch (e) {
       // tslint:disable-next-line:no-console
-      console.log("ARRRRRRG");
+      console.log('ARRRRRRG');
     }
   }
 
