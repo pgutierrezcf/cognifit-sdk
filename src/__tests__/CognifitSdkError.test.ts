@@ -1,7 +1,6 @@
 import { CognifitSdkError } from '../lib/cognifit.sdk.error';
 
 test('Tesintg CognifitSdkError', () => {
-
   const cognifitSdkError = new CognifitSdkError();
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.NOT_ERROR);
   expect(cognifitSdkError.getMessage()).toBe('');
@@ -21,5 +20,4 @@ test('Tesintg CognifitSdkError', () => {
   cognifitSdkError.setError(cognifitSdkError.ERROR_TYPE);
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.ERROR_TYPE);
   expect(cognifitSdkError.getMessage()).not.toBe('');
-
 });
