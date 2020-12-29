@@ -39,13 +39,25 @@ class CognifitSdk {
     return true;
   }
 
+  public iframeUrlChanged(thisIframe: any): void {
+    // tslint:disable-next-line:no-console
+    console.log(thisIframe);
+    try{
+      // tslint:disable-next-line:no-console
+      console.log(thisIframe.contentWindow.location.href);
+    }catch(e){
+      // tslint:disable-next-line:no-console
+      console.log("ARRRRRRG");
+    }
+  }
+
   private printIframe(type: string, key: string): void {
     document.body.innerHTML +=
       '<iframe id="cognifitAccess" style="' +
       this.getIframeStyle() +
       '" title="CogniFit Access" width="100%" height="100%" src="' +
       this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" onload="document.cognifitSdkIframeInterface.onload(this)"></iframe><script>document.cognifitSdkIframeInterface = {}; document.cognifitSdkIframeInterface.onload = function(thisIframe){try{console.log(thisIframe.contentWindow.location.href);}catch(e){console.log("ARRRRRRG");}}; </script>';
+      '" (load)="cognifitSdk.iframeUrlChanged(this)"></iframe>';
   }
 
   private getIframeStyle(): string {
