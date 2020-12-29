@@ -20,7 +20,9 @@ class CognifitSdk {
     if (!this.cognifitSdkValidator.validateConfig(this.cognifitSdkConfig, this.cognifitSdkError)) {
       this.initialized = false;
     } else {
-      window['fncIdentifierCognifitSdkRef'] = {
+      const windowIndex = 'fncIdentifierCognifitSdkRef';
+      // @ts-ignore
+      window[windowIndex] = {
         component: this
       };
       this.initialized = true;
