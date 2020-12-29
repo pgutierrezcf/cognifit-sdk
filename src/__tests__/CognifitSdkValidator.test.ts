@@ -38,12 +38,18 @@ test('Tesintg CognifitSdkValidator', () => {
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.ERROR_CLIENT_ID);
   expect(cognifitSdkValidator.validateConfig(new CognifitSdkConfig('CLIENT_ID'), cognifitSdkError)).toBe(false);
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.ERROR_CLIENT_HASH);
-  expect(cognifitSdkValidator.validateConfig(new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH'), cognifitSdkError)).toBe(false);
+  expect(cognifitSdkValidator.validateConfig(new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH'), cognifitSdkError)).toBe(
+    false,
+  );
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.ERROR_ACCESS_TOKEN);
-  expect(cognifitSdkValidator.validateConfig(new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH', 'ACCESS_TOKEN'), cognifitSdkError)).toBe(true);
+  expect(
+    cognifitSdkValidator.validateConfig(
+      new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH', 'ACCESS_TOKEN'),
+      cognifitSdkError,
+    ),
+  ).toBe(true);
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.NOT_ERROR);
 
   expect(cognifitSdkValidator.isContainerValid()).toBe(true);
   expect(cognifitSdkValidator.isAccessTokenValid()).toBe(true);
-
 });

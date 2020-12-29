@@ -1,7 +1,6 @@
 import { CognifitSdkConfig } from '../lib/cognifit.sdk.config';
 
 test('Tesintg CognifitSdkConfig', () => {
-
   const cognifitSdkConfig = new CognifitSdkConfig();
   expect(cognifitSdkConfig.getAccessToken()).toBe('');
 
@@ -21,5 +20,4 @@ test('Tesintg CognifitSdkConfig', () => {
   sandbox = false;
   const cognifitSdkConfigThree = new CognifitSdkConfig(clientId, clientHash, accessTokenTwo, sandbox);
   expect(cognifitSdkConfigThree.getIframeUrl('', '')).toContain('https://www.cognifit.com/partner/');
-
 });

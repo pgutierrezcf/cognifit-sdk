@@ -1,7 +1,6 @@
 import { stringify } from 'ts-jest/dist/utils/json';
 
 export class CognifitSdkConfig {
-
   accessToken: string;
   clientHash: string;
   clientId: string;
@@ -24,12 +23,11 @@ export class CognifitSdkConfig {
 
   getIframeUrl(type: string, key: string): string {
     let url = 'https://';
-    url += (this.sandbox) ? 'preprod.cognifit.com' : 'www.cognifit.com';
+    url += this.sandbox ? 'preprod.cognifit.com' : 'www.cognifit.com';
     url += '/partner/' + this.clientHash;
     url += '/client_id/' + this.clientId;
     url += '/user_token/' + this.accessToken;
-    url += '/setting/' + stringify([{"type":type.toLowerCase(),"key":key}]);
+    url += '/setting/' + stringify([{ type: type.toLowerCase(), key: key }]);
     return url;
   }
-
 }

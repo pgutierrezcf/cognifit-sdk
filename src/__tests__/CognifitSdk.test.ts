@@ -2,7 +2,6 @@ import { cognifitSdk } from '../index';
 import { CognifitSdkConfig } from '../lib/cognifit.sdk.config';
 
 test('My CognifitSdk', () => {
-
   const container = 'divContainer';
   const accessToken = 'accessToken';
 
@@ -19,5 +18,4 @@ test('My CognifitSdk', () => {
   expect(cognifitSdk.start('ASSESSMENT', 'MAHJONG')).toBe(true);
   expect(cognifitSdk.start('TRAINING', 'MAHJONG')).toBe(true);
   expect(cognifitSdk.start('GAME', 'MAHJONG')).toBe(true);
-
 });

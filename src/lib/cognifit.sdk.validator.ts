@@ -4,8 +4,8 @@ import { CognifitSdkConfig } from './cognifit.sdk.config';
 export class CognifitSdkValidator {
   types = ['ASSESSMENT', 'TRAINING', 'GAME'];
 
-  public isInitialized(initialized: boolean, cognifitSdkError: CognifitSdkError){
-    if(!initialized){
+  public isInitialized(initialized: boolean, cognifitSdkError: CognifitSdkError) {
+    if (!initialized) {
       cognifitSdkError.setError(cognifitSdkError.ERROR_INITIALIZED);
       return false;
     }
@@ -13,16 +13,16 @@ export class CognifitSdkValidator {
     return true;
   }
 
-  public validateConfig(config: CognifitSdkConfig, cognifitSdkError: CognifitSdkError){
-    if(config.clientId === ''){
+  public validateConfig(config: CognifitSdkConfig, cognifitSdkError: CognifitSdkError) {
+    if (config.clientId === '') {
       cognifitSdkError.setError(cognifitSdkError.ERROR_CLIENT_ID);
       return false;
     }
-    if(config.clientHash === ''){
+    if (config.clientHash === '') {
       cognifitSdkError.setError(cognifitSdkError.ERROR_CLIENT_HASH);
       return false;
     }
-    if(config.accessToken === ''){
+    if (config.accessToken === '') {
       cognifitSdkError.setError(cognifitSdkError.ERROR_ACCESS_TOKEN);
       return false;
     }
