@@ -45,7 +45,7 @@ class CognifitSdk {
       this.getIframeStyle() +
       '" title="CogniFit Access" width="100%" height="100%" src="' +
       this.cognifitSdkConfig.getIframeUrl(type, key) +
-      '" onload="cognifitSdkIframeInterface.onload(this)"></iframe><script>cognifitSdkIframeInterface = {}; cognifitSdkIframeInterface.onload = function(thisIframe){try{console.log(thisIframe.contentWindow.location.href)}catch(){console.log("ARRRRRRG")}}; </script>';
+      '" onload="cognifitSdkIframeInterface.onload(this)"></iframe><script>cognifitSdkIframeInterface = {}; cognifitSdkIframeInterface.onload = function(thisIframe){try{console.log(thisIframe.contentWindow.location.href);}catch(e){console.log("ARRRRRRG");}}; </script>';
   }
 
   private getIframeStyle(): string {
