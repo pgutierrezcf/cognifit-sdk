@@ -21,13 +21,13 @@ export class CognifitSdkConfig {
     return this.accessToken;
   }
 
-  getIframeUrl(type: string, key: string): string {
+  getIframeUrl(type: string, keyValue: string): string {
     let url = 'https://';
     url += this.sandbox ? 'preprod.cognifit.com' : 'www.cognifit.com';
     url += '/partner/' + this.clientHash;
     url += '/client_id/' + this.clientId;
     url += '/user_token/' + this.accessToken;
-    url += '/setting/' + stringify([{ type: type.toLowerCase(), key: key }]);
+    url += '/setting/' + stringify([{ type: type.toLowerCase(), key: keyValue }]);
     return url;
   }
 }
