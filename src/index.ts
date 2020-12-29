@@ -39,12 +39,16 @@ class CognifitSdk {
     return true;
   }
 
-  public iframeUrlChanged(thisIframe: any): void {
+  public iframeUrlChanged(): void {
+    alert(11111);
+    const cognifitAccessIframe = document.getElementById('cognifitAccess')
     // tslint:disable-next-line:no-console
-    console.log(thisIframe);
+    console.log(cognifitAccessIframe);
     try {
+      // @ts-ignore
+      const cognifitAccessIframeHref = cognifitAccessIframe.contentWindow.location.href;
       // tslint:disable-next-line:no-console
-      console.log(thisIframe.contentWindow.location.href);
+      console.log(cognifitAccessIframeHref);
     } catch (e) {
       // tslint:disable-next-line:no-console
       console.log('ARRRRRRG');
