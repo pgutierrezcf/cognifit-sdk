@@ -23,9 +23,9 @@ export class CognifitSdkConfig {
     let url = 'https://';
     url += this.sandbox ? 'preprod.cognifit.com' : 'www.cognifit.com';
     url += '/partner/' + this.clientHash;
-    url += '/client_id/' + this.clientId;
-    url += '/user_token/' + this.accessToken;
-    url += '/setting/' + JSON.stringify([{ type: type.toLowerCase(), key: keyValue }]);
+    url += '?client_id=' + this.clientId;
+    url += '&user_token=' + this.accessToken;
+    url += '&setting=' + JSON.stringify([{ type: type.toLowerCase(), key: keyValue }]);
     return url;
   }
 }
