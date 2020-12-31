@@ -7,12 +7,14 @@ class CognifitSdk {
   cognifitSdkError: CognifitSdkError;
   cognifitSdkValidator: CognifitSdkValidator;
   initialized: boolean;
+  callback: ((data: any) => void) | null;
 
   constructor() {
     this.cognifitSdkConfig = new CognifitSdkConfig();
     this.cognifitSdkError = new CognifitSdkError();
     this.cognifitSdkValidator = new CognifitSdkValidator();
     this.initialized = false;
+    this.callback = null;
   }
 
   public init(config: CognifitSdkConfig) {
@@ -30,7 +32,7 @@ class CognifitSdk {
     return this.initialized;
   }
 
-  public start(type: string, key: string) {
+  public start(type: string, key: string, callback: (data: any) => void) {
     if (!this.cognifitSdkValidator.isInitialized(this.initialized, this.cognifitSdkError)) {
       return false;
     }
@@ -40,6 +42,7 @@ class CognifitSdk {
     if (!this.cognifitSdkValidator.validate(type, key, this.cognifitSdkError)) {
       return false;
     }
+    this.callback = callback
     this.printIframe(type, key);
     return true;
   }
@@ -54,6 +57,10 @@ class CognifitSdk {
       // tslint:disable-next-line:no-console
       console.log(cognifitAccessIframeHref);
       cognifitAccessIframe?.remove();
+      if(this.callback){
+        this.callback({'test': 'testing'});
+        this.callback = null;
+      }
     } catch (e) {
       // tslint:disable-next-line:no-console
       console.log('ARRRRRRG');
