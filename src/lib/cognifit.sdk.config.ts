@@ -29,13 +29,11 @@ export class CognifitSdkConfig {
     return url;
   }
 
-  private buildSetting(type: string, keyValue: string): string{
-    if(type === 'GAME'){
+  private buildSetting(type: string, keyValue: string): string {
+    if (type === 'GAME') {
       return '&setting[tasks][]=' + keyValue;
-    }else{
+    } else {
       return '&setting=' + encodeURI(JSON.stringify([{ type: type.toLowerCase(), key: keyValue }]));
     }
-
   }
-
 }
