@@ -42,7 +42,7 @@ class CognifitSdk {
     if (!this.cognifitSdkValidator.validate(type, key, this.cognifitSdkError)) {
       return false;
     }
-    this.callback = callback
+    this.callback = callback;
     this.printIframe(type, key);
     return true;
   }
@@ -57,8 +57,8 @@ class CognifitSdk {
       // tslint:disable-next-line:no-console
       console.log(cognifitAccessIframeHref);
       cognifitAccessIframe?.remove();
-      if(this.callback){
-        this.callback({'test': 'testing'});
+      if (this.callback) {
+        this.callback({ test: 'testing' });
         this.callback = null;
       }
     } catch (e) {
