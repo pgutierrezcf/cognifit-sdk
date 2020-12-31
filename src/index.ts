@@ -1,6 +1,7 @@
 import { CognifitSdkError } from './lib/cognifit.sdk.error';
 import { CognifitSdkValidator } from './lib/cognifit.sdk.validator';
 import { CognifitSdkConfig } from './lib/cognifit.sdk.config';
+import { CognifitSdkResponse } from './lib/cognifit.sdk.response';
 
 class CognifitSdk {
   cognifitSdkConfig: CognifitSdkConfig;
@@ -32,7 +33,7 @@ class CognifitSdk {
     return this.initialized;
   }
 
-  public start(type: string, key: string, callback: (data: any) => void) {
+  public start(type: string, key: string, callback?: ((data: any) => void) | null) {
     if (!this.cognifitSdkValidator.isInitialized(this.initialized, this.cognifitSdkError)) {
       return false;
     }
@@ -42,7 +43,7 @@ class CognifitSdk {
     if (!this.cognifitSdkValidator.validate(type, key, this.cognifitSdkError)) {
       return false;
     }
-    this.callback = callback;
+    this.callback = (callback) ? callback : null;
     this.printIframe(type, key);
     return true;
   }
@@ -54,11 +55,11 @@ class CognifitSdk {
     try {
       // @ts-ignore
       const cognifitAccessIframeHref = cognifitAccessIframe.contentWindow.location.href;
+      const cognifitAccessResonpeParams = new CognifitSdkResponse(cognifitAccessIframeHref).getResponseParams();
       // tslint:disable-next-line:no-console
-      console.log(cognifitAccessIframeHref);
       cognifitAccessIframe?.remove();
       if (this.callback) {
-        this.callback({ test: 'testing' });
+        this.callback(cognifitAccessResonpeParams);
         this.callback = null;
       }
     } catch (e) {
@@ -81,6 +82,7 @@ class CognifitSdk {
   private getIframeStyle(): string {
     return 'position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden;';
   }
+
 }
 
 export const cognifitSdk = new CognifitSdk();
