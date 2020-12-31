@@ -25,6 +25,7 @@ export class CognifitSdkConfig {
     url += '/partner/' + this.clientHash;
     url += '?client_id=' + this.clientId;
     url += '&user_token=' + this.accessToken;
+    url += '&cognifit-access-type=iframe';
     url += '&setting=' + this.buildSetting(type, keyValue);
     return url;
   }
