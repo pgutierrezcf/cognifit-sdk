@@ -17,7 +17,7 @@ export class CognifitSdkResponse {
     if (queryStringStarting === -1) {
       return {};
     }
-    return this.queryStringToJSON(url.substr(url.indexOf('?') + 1));
+    return this.queryStringToJSON(decodeURI(url.substr(url.indexOf('?') + 1)));
   }
 
   private queryStringToJSON(qs: string) {
