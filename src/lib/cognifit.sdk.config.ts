@@ -25,7 +25,17 @@ export class CognifitSdkConfig {
     url += '/partner/' + this.clientHash;
     url += '?client_id=' + this.clientId;
     url += '&user_token=' + this.accessToken;
-    url += '&setting=' + encodeURI(JSON.stringify([{ type: type.toLowerCase(), key: keyValue }]));
+    url += '&setting=' + this.buildSetting(type, keyValue);
     return url;
   }
+
+  private buildSetting(type: string, keyValue: string): string{
+    if(type === 'GAME'){
+      return '&setting[tasks][]=' + keyValue;
+    }else{
+      return '&setting=' + encodeURI(JSON.stringify([{ type: type.toLowerCase(), key: keyValue }]));
+    }
+
+  }
+
 }
