@@ -5,12 +5,18 @@ export class CognifitSdkConfig {
   callbackUrl: string;
   sandbox: boolean;
 
-  constructor(clientId: string = '', clientHash: string = '', callbackUrl: string = '', accessToken: string = '', sandbox: boolean = false) {
-    this.accessToken  = accessToken;
-    this.clientHash   = clientHash;
-    this.clientId     = clientId;
-    this.callbackUrl  = callbackUrl;
-    this.sandbox      = sandbox;
+  constructor(
+    clientId: string = '',
+    clientHash: string = '',
+    callbackUrl: string = '',
+    accessToken: string = '',
+    sandbox: boolean = false,
+  ) {
+    this.accessToken = accessToken;
+    this.clientHash = clientHash;
+    this.clientId = clientId;
+    this.callbackUrl = callbackUrl;
+    this.sandbox = sandbox;
   }
 
   setAccessToken(accessToken: string): void {
