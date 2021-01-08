@@ -9,7 +9,7 @@ test('My CognifitSdk', () => {
   expect(cognifitSdk.cognifitSdkError.getError()).toBe(cognifitSdk.cognifitSdkError.ERROR_INITIALIZED);
 
   expect(cognifitSdk.init(new CognifitSdkConfig())).toBe(false);
-  expect(cognifitSdk.init(new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH', 'ACCESS_TOKEN'))).toBe(true);
+  expect(cognifitSdk.init(new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH', '','ACCESS_TOKEN'))).toBe(true);
 
   expect(cognifitSdk.start('NOT_TYPE', 'MAHJONG')).toBe(false);
   expect(cognifitSdk.start('ASSESSMENT', '')).toBe(false);

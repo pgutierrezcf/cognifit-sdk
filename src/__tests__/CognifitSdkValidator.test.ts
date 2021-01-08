@@ -44,7 +44,7 @@ test('Tesintg CognifitSdkValidator', () => {
   expect(cognifitSdkError.getError()).toBe(cognifitSdkError.ERROR_ACCESS_TOKEN);
   expect(
     cognifitSdkValidator.validateConfig(
-      new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH', 'ACCESS_TOKEN'),
+      new CognifitSdkConfig('CLIENT_ID', 'CLIENT_HASH', '', 'ACCESS_TOKEN'),
       cognifitSdkError,
     ),
   ).toBe(true);

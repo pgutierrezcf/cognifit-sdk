@@ -2,13 +2,15 @@ export class CognifitSdkConfig {
   accessToken: string;
   clientHash: string;
   clientId: string;
+  callbackUrl: string;
   sandbox: boolean;
 
-  constructor(clientId: string = '', clientHash: string = '', accessToken: string = '', sandbox: boolean = false) {
-    this.accessToken = accessToken;
-    this.clientHash = clientHash;
-    this.clientId = clientId;
-    this.sandbox = sandbox;
+  constructor(clientId: string = '', clientHash: string = '', callbackUrl: string = '', accessToken: string = '', sandbox: boolean = false) {
+    this.accessToken  = accessToken;
+    this.clientHash   = clientHash;
+    this.clientId     = clientId;
+    this.callbackUrl  = callbackUrl;
+    this.sandbox      = sandbox;
   }
 
   setAccessToken(accessToken: string): void {
@@ -26,7 +28,10 @@ export class CognifitSdkConfig {
     url += '?client_id=' + this.clientId;
     url += '&user_token=' + this.accessToken;
     url += '&cognifit-access-type=iframe';
-    url += '&setting=' + this.buildSetting(type, keyValue);
+    if (this.callbackUrl) {
+      url += '&callback_url=' + this.accessToken;
+    }
+    url += this.buildSetting(type, keyValue);
     return url;
   }
 
