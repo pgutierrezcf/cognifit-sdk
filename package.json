@@ -1,6 +1,6 @@
 {
-  "name": "@DaniOlivares/cognifit-sdk",
-  "version": "1.0.25",
+  "name": "@cognifit/launcher-js-sdk",
+  "version": "1.1.0",
   "description": "Connect your app with CogniFit",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,9 +15,6 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/DaniOlivares"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DaniOlivares/cognifit-sdk.git",
@@ -31,7 +28,7 @@
     "Games"
   ],
   "author": "CogniFit",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/DaniOlivares/cognifit-sdk/issues"
   },
@@ -47,5 +44,9 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {}
 }

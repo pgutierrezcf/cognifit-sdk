@@ -16,11 +16,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
 
 ### Installation
 
-  Set your project to access Private Github Package
-  Just go on [official Node.js website](https://nodejs.org/) and download the installer.
-  Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
-
-      $ npm install @daniolivares/cognifit-sdk@1.0.22
+      $ npm install @cognifit/launcher-js-sdk@@latest
 
 ---
 
@@ -32,8 +28,8 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
 - ### Initialize CogniFit SDK
 
     ```js
-    import { cognifitSdk } from '@daniolivares/cognifit-sdk';
-    import { CognifitSdkConfig } from '@daniolivares/cognifit-sdk/lib/lib/cognifit.sdk.config';
+    import { cognifitSdk } from '@cognifit/launcher-js-sdk';
+    import { CognifitSdkConfig } from '@cognifit/launcher-js-sdk/lib/lib/cognifit.sdk.config';
   
   
     clientId: string;                 // Provided by CogniFit agent
