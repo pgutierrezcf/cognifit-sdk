@@ -1,24 +1,28 @@
-<h1>CogniFit SDK</h1>
+# CogniFit SDK
 
-Connect your angular web apps with CogniFit. Launch CogniFit session for your users.
+Connect your Angular web apps with CogniFit. Launch CogniFit session for your users.
 
 ---
 
 ### Requirements
 
-- ### Get you CogniFit Partner Credentials
-Contact CogniFit to register your partner and get your credentials. 
+- ### Get your CogniFit Partner Credentials
+    Contact CogniFit to register your partner and get your credentials. 
 
 - ### Register your users on CogniFit and get user access token
-Use the [CogniFit API](https://api.cognifit.com/) or the [CogniFit PHP SDK](https://packagist.org/packages/cognifit/cognifit-sdk-php) to register users on CogniFit and to get access tokens.
+    Use the [CogniFit API](https://api.cognifit.com/) or the [CogniFit PHP SDK](https://packagist.org/packages/cognifit/cognifit-sdk-php) to register users on CogniFit and to get access tokens.
 
-### Install
+---
+
+### Installation
 
   Set your project to access Private Github Package
   Just go on [official Node.js website](https://nodejs.org/) and download the installer.
   Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
 
       $ npm install @daniolivares/cognifit-sdk@1.0.22
+
+---
 
 ### Usage
 
@@ -32,11 +36,11 @@ Use the [CogniFit API](https://api.cognifit.com/) or the [CogniFit PHP SDK](http
     import { CognifitSdkConfig } from '@daniolivares/cognifit-sdk/lib/lib/cognifit.sdk.config';
   
   
-    clientId: string;
-    clientHash: string;
-    callbackUrl: string;
-    cognifitUserAccessToken: string;
-    sandbok: boolean;
+    clientId: string;                 // Provided by CogniFit agent
+    clientHash: string;               // Provided by CogniFit agent
+    callbackUrl: string;              // Must be communicated to CogniFit agent before be used
+    cognifitUserAccessToken: string;  // Requested in previous section 
+    sandbok: boolean;                 // Default false. Sandbox needs to be allowed by CogniFit agent
     
   
     cognifitSdk.init(new CognifitSdkConfig(
@@ -66,16 +70,40 @@ Use the [CogniFit API](https://api.cognifit.com/) or the [CogniFit PHP SDK](http
       - Training [Training list](https://cognifitapiv2.docs.apiary.io/#reference/0/brain-training-programs/training-list)
       - Games: [Brain Game List](https://cognifitapiv2.docs.apiary.io/#reference/0/brain-games/brain-game-list)
 
-## Response
+--- 
+
+### Response
   The data parameter in the callback function is a json object.
+  - status: 
+    - completed
+    - aborted
+    - loginError
+  - trainings: Training keys to be done
+  - trainingsSessionIds: Session ids completed
+  - trainingsDone: Training key completed
+  - assessments: Assessment keys to be done
+  - assessmentsSessionIds: Assessment keys to be done
+  - assessmentsDone: Assessment keys to be done
+  - message: If status is loginError
 
-## Errors
+---
 
-  - In initialization
+### Errors
+
+- #### In initialization
     
-
-  - Launching session
-    {status: "loginError", message: "Client do not exists"}
-
-
+    When calling cognifitSdk.init or cognifitSdk.start some errors could be return.
+    Error can be retreive using:
+    - cognifitSdk.cognifitSdkError.getError()
+    - cognifitSdk.cognifitSdkError.getMessage()
+      
+- #### Launching session
+    
+    When CognFit loading fails the object received in the callback is:
   
+        {status: "loginError", message: "Client do not exists"}
+
+    The error message could be:
+    - User do not exists
+    - Client do not exists
+    - Token is not valid
