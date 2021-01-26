@@ -35,7 +35,7 @@ export class CognifitSdkConfig {
     url += '&user_token=' + this.accessToken;
     url += '&cognifit-access-type=iframe';
     if (this.callbackUrl) {
-      url += '&callback_url=' + this.accessToken;
+      url += '&callback_url=' + this.callbackUrl;
     }
     url += this.buildSetting(type, keyValue);
     return url;
