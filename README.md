@@ -1,4 +1,4 @@
-# CogniFit SDK
+<h1>CogniFit SDK</h1>
 
 Connect your angular web apps with CogniFit. Launch CogniFit session for your users.
 
