@@ -16,7 +16,7 @@ test('Tesintg CognifitSdkConfig', () => {
   const cognifitSdkConfigTwo = new CognifitSdkConfig(clientId, clientHash, callbackUrl, accessTokenTwo, sandbox);
   expect(cognifitSdkConfigTwo.getAccessToken()).not.toBe(accessToken);
   expect(cognifitSdkConfigTwo.getAccessToken()).toBe(accessTokenTwo);
-  expect(cognifitSdkConfigTwo.getIframeUrl('', '')).toContain('https://preprod.cognifit.com/partner/');
+  expect(cognifitSdkConfigTwo.getIframeUrl('', '')).toContain('https://preprodintervention.cognifit.com/partner/');
 
   sandbox = false;
   const cognifitSdkConfigThree = new CognifitSdkConfig(clientId, clientHash, callbackUrl, accessTokenTwo, sandbox);
