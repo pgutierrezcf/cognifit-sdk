@@ -6,11 +6,9 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
 
 ### Requirements
 
-- ### Get your CogniFit Partner Credentials
-    Contact CogniFit to register your partner and get your credentials. 
+- Contact CogniFit to register your partner and get your credentials. 
 
-- ### Register your users on CogniFit and get user access token
-    Use the [CogniFit API](https://api.cognifit.com/) or the [CogniFit PHP SDK](https://packagist.org/packages/cognifit/cognifit-sdk-php) to register users on CogniFit and to get access tokens.
+- Use the [CogniFit API](https://api.cognifit.com/) or the [CogniFit PHP SDK](https://packagist.org/packages/cognifit/cognifit-sdk-php) to register users on CogniFit and to get access tokens.
 
 ---
 

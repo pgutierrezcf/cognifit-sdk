@@ -29,7 +29,7 @@ export class CognifitSdkConfig {
 
   getIframeUrl(type: string, keyValue: string): string {
     let url = 'https://';
-    url += this.sandbox ? 'preprod.cognifit.com' : 'www.cognifit.com';
+    url += this.sandbox ? 'preprodintervention.cognifit.com' : 'www.cognifit.com';
     url += '/partner/' + this.clientHash;
     url += '?client_id=' + this.clientId;
     url += '&user_token=' + this.accessToken;
