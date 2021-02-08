@@ -1,6 +1,6 @@
 {
   "name": "@cognifit/launcher-js-sdk-one-level",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Connect your app with CogniFit",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
