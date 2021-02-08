@@ -1,5 +1,6 @@
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { PackageVersion } from '../environments/version';
+import { CognifitSdkResponse } from './cognifit.sdk.response';
 
 export class CognifitSdkConfig {
   containerId: string;
@@ -8,7 +9,6 @@ export class CognifitSdkConfig {
   sandbox: boolean;
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
-
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
@@ -41,7 +41,7 @@ export class CognifitSdkConfig {
       window.addEventListener(
         'message',
         (message) => {
-          resolve(message.data);
+          resolve(new CognifitSdkResponse(message.data));
           // @ts-ignore
           document.getElementById(this.containerId).innerHTML = '';
         },
@@ -96,4 +96,5 @@ export class CognifitSdkConfig {
       ? 'https://prejs.cognifit.com/' + this.jsVersion + '/html5Loader.js'
       : 'https://js.cognifit.com/' + this.jsVersion + '/html5Loader.js';
   }
+
 }
