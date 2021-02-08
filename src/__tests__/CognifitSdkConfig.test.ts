@@ -8,10 +8,10 @@ test('Tesintg CognifitSdkConfig', () => {
   cognifitSdkConfig.setAccessToken(accessToken);
   expect(cognifitSdkConfig.getAccessToken()).toBe(accessToken);
 
-  const container       = 'EXAMPLE_CONTAINER';
-  const clientId        = 'EXAMPLE_CLIENT_ID';
-  const accessTokenTwo  = 'EXAMPLE_ACCESS_TOKEN_TWO';
-  let sandbox           = true;
+  const container = 'EXAMPLE_CONTAINER';
+  const clientId = 'EXAMPLE_CLIENT_ID';
+  const accessTokenTwo = 'EXAMPLE_ACCESS_TOKEN_TWO';
+  let sandbox = true;
   const cognifitSdkConfigTwo = new CognifitSdkConfig(container, clientId, accessTokenTwo, sandbox);
   expect(cognifitSdkConfigTwo.getAccessToken()).not.toBe(accessToken);
   expect(cognifitSdkConfigTwo.getAccessToken()).toBe(accessTokenTwo);

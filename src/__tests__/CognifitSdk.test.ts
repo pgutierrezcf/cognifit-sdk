@@ -5,7 +5,7 @@ const cognifitSdk = new CognifitSdk();
 
 test('Test must fail', () => {
   expect.assertions(1);
-  return cognifitSdk.start('NOT_TYPE', 'MAHJONG').catch(e => expect(e).toMatch('Check cognifitSdkError'));
+  return cognifitSdk.start('NOT_TYPE', 'MAHJONG').catch((e) => expect(e).toMatch('Check cognifitSdkError'));
 });
 
 /*

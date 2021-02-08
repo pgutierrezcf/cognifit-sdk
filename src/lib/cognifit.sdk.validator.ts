@@ -3,10 +3,9 @@ import { CognifitSdkConfig } from './cognifit.sdk.config';
 import { CognifitSdk } from '../index';
 
 export class CognifitSdkValidator {
-
   types = ['ASSESSMENT', 'TRAINING', 'GAME'];
 
-  public validateAllToStart(cognifitSdk: CognifitSdk, type: string, key: string){
+  public validateAllToStart(cognifitSdk: CognifitSdk, type: string, key: string) {
     if (!this.isInitialized(cognifitSdk.initialized, cognifitSdk.cognifitSdkError)) {
       return false;
     }
@@ -72,7 +71,7 @@ export class CognifitSdkValidator {
   }
 
   private validateLoadedResource(config: CognifitSdkConfig, cognifitSdkError: CognifitSdkError) {
-    if(!config.resourceHtml5Loader){
+    if (!config.resourceHtml5Loader) {
       cognifitSdkError.setError(cognifitSdkError.ERROR_RESOURCE_NOT_LOADED);
       return false;
     }
@@ -88,5 +87,4 @@ export class CognifitSdkValidator {
     // TODO validate before sending
     return true;
   }
-
 }
