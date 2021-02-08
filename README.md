@@ -30,20 +30,22 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     import { CognifitSdkConfig } from '@cognifit/launcher-js-sdk/lib/lib/cognifit.sdk.config';
   
   
+    containerId: string               // Target container for CogniFitLoading
     clientId: string;                 // Provided by CogniFit agent
-    clientHash: string;               // Provided by CogniFit agent
-    callbackUrl: string;              // Must be communicated to CogniFit agent before be used
     cognifitUserAccessToken: string;  // Requested in previous section 
     sandbok: boolean;                 // Default false. Sandbox needs to be allowed by CogniFit agent
     
   
     cognifitSdk.init(new CognifitSdkConfig(
+      containerId,
       clientId,
-      clientHash,
-      callbackUrl,
       cognifitUserAccessToken,
       sandbok
-    ));
+    )).then(response => {
+    
+    }).catch(error => {
+    
+    });
     ```
 
 - ### Launch session
@@ -52,9 +54,22 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     typeValue: string;
     keyValue: string;
   
-    cognifitSdk.start(typeValue, keyValue, function(data) {
-      console.log(' +++++ YOUR CALLBACK FUNCTION +++++');
-      console.log(data);
+    cognifitSdk.start(
+      typeValue, 
+      keyValue
+    ).then(cognifitSdkResponse => {
+      if (CognifitSdkResponse.isSessionCompleted()) {
+        CognifitSdkResponse.typeValue;
+        CognifitSdkResponse.keyValue;
+      }
+      if (CognifitSdkResponse.isSessionAborted()) {
+      
+      }
+      if (CognifitSdkResponse.isErrorLogin()) {
+      
+      } 
+    }).catch(error => {
+    
     });
     ```
 
@@ -66,22 +81,6 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
 
 --- 
 
-### Response
-  The data parameter in the callback function is a json object.
-  - status: 
-    - completed
-    - aborted
-    - loginError
-  - trainings: Training keys to be done
-  - trainingsSessionIds: Session ids completed
-  - trainingsDone: Training key completed
-  - assessments: Assessment keys to be done
-  - assessmentsSessionIds: Assessment keys to be done
-  - assessmentsDone: Assessment keys to be done
-  - message: If status is loginError
-
----
-
 ### Errors
 
 - #### In initialization
@@ -92,12 +91,5 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     - cognifitSdk.cognifitSdkError.getMessage()
       
 - #### Launching session
-    
-    When CognFit loading fails the object received in the callback is:
-  
-        {status: "loginError", message: "Client do not exists"}
 
-    The error message could be:
-    - User do not exists
-    - Client do not exists
-    - Token is not valid
+    

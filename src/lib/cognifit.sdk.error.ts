@@ -7,6 +7,7 @@ export class CognifitSdkError {
   readonly ERROR_CLIENT_HASH = 5;
   readonly ERROR_CLIENT_ID = 6;
   readonly ERROR_INITIALIZED = 7;
+  readonly ERROR_RESOURCE_NOT_LOADED = 8;
 
   error: number;
 
@@ -39,6 +40,8 @@ export class CognifitSdkError {
           return 'Incorrect client id';
         case this.ERROR_INITIALIZED:
           return 'CognifitSdk not initialized';
+        case this.ERROR_RESOURCE_NOT_LOADED:
+          return 'Resource not loaded';
       }
     }
     return '';

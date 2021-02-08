@@ -1,51 +1,33 @@
 export class CognifitSdkResponse {
-  params: object;
 
-  constructor(url: string) {
-    this.params = this.urlStringToJSON(url);
+  status: string;
+  typeValue: string;
+  keyValue: string;
+
+  constructor(data: any) {
+    this.status = data.status;
+    this.typeValue =  this._formatType(data.mode);
+    this.keyValue =  data.key;
   }
 
-  getResponseParams(): object {
-    return this.params;
+  isSessionCompleted() {
+    return (this.status === 'completed');
   }
 
-  private urlStringToJSON(url: string): object {
-    if (!url) {
-      return {};
+  isSessionAborted () {
+    return (this.status === 'aborted');
+  }
+
+  isErrorLogin () {
+    return (this.status === 'errorLogin');
+  }
+
+  private _formatType(dataMode: string): string {
+    if (dataMode) {
+      return dataMode.replace('Mode', '').toUpperCase();
     }
-    const queryStringStarting = url.indexOf('?');
-    if (queryStringStarting === -1) {
-      return {};
-    }
-    return this.queryStringToJSON(decodeURI(url.substr(url.indexOf('?') + 1)));
+    return '';
+
   }
 
-  private queryStringToJSON(qs: string) {
-    const pairs = qs.split('&');
-    const result: any = {};
-    pairs.forEach((p) => {
-      const pair = p.split('=');
-
-      let key = pair[0];
-      if (key.indexOf('[]') !== -1) {
-        key = key.replace('[]', '');
-      }
-
-      let value: number | string = decodeURIComponent(pair[1] || '');
-      if (!isNaN(Number(value))) {
-        value = Number(value);
-      }
-      if (result[key]) {
-        if (Object.prototype.toString.call(result[key]) === '[object Array]') {
-          result[key].push(value);
-        } else {
-          result[key] = [result[key], value];
-        }
-      } else {
-        result[key] = value;
-      }
-    });
-
-    return JSON.parse(JSON.stringify(result));
-  }
 }
