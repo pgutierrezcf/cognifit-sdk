@@ -6,7 +6,9 @@ export class CognifitSdkConfig {
   accessToken: string;
   clientId: string;
   sandbox: boolean;
+  sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
+
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
@@ -16,7 +18,7 @@ export class CognifitSdkConfig {
     this.accessToken = accessToken;
     this.clientId = clientId;
     this.sandbox = sandbox;
-    const packageVersion = new PackageVersion();
+    this.sdkHtml5Version = new PackageVersion().getMinor();
   }
 
   setAccessToken(accessToken: string): void {
@@ -81,7 +83,7 @@ export class CognifitSdkConfig {
     this.jsVersion = defaultJsVersion;
     const httpClient = new HttpClient(new HttpXhrBackend({ build: () => new XMLHttpRequest() }));
     let url = this.sandbox ? 'https://preapi.cognifit.com' : 'https://api.cognifit.com';
-    url += '/description/versions/sdkjs?v=2.0';
+    url += '/description/versions/sdkjs?v=' + this.sdkHtml5Version;
     const remoteJsVersion = await httpClient.get<any>(url).toPromise();
     if (remoteJsVersion.version) {
       this.jsVersion = remoteJsVersion.version;
