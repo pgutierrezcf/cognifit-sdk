@@ -1,6 +1,6 @@
 {
-  "name": "@cognifit/launcher-js-sdk-one-level",
-  "version": "1.2.3",
+  "name": "@cognifit/launcher-js-sdk",
+  "version": "2.0.0",
   "description": "Connect your app with CogniFit",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DaniOlivares/cognifit-sdk.git#master-html5",
+    "url": "git+https://github.com/DaniOlivares/cognifit-sdk.git",
     "directory": "@DaniOlivares/cognifit-sdk"
   },
   "keywords": [
@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/DaniOlivares/cognifit-sdk/issues"
   },
-  "homepage": "https://github.com/DaniOlivares/cognifit-sdk.git#master-html5",
+  "homepage": "https://github.com/DaniOlivares/cognifit-sdk.git",
   "devDependencies": {
     "@types/jest": "^26.0.19",
     "jest": "^26.6.3",
