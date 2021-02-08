@@ -30,6 +30,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     import { CognifitSdkConfig } from '@cognifit/launcher-js-sdk/lib/lib/cognifit.sdk.config';
   
   
+    containerId: string               // Target container for CogniFitLoading
     clientId: string;                 // Provided by CogniFit agent
     clientHash: string;               // Provided by CogniFit agent
     callbackUrl: string;              // Must be communicated to CogniFit agent before be used
@@ -38,9 +39,8 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     
   
     cognifitSdk.init(new CognifitSdkConfig(
+      containerId,
       clientId,
-      clientHash,
-      callbackUrl,
       cognifitUserAccessToken,
       sandbok
     ));

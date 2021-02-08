@@ -48,5 +48,9 @@
   "directories": {
     "lib": "lib"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@angular/common": "^11.1.2",
+    "@angular/core": "^11.1.2",
+    "rxjs": "^6.6.3"
+  }
 }
