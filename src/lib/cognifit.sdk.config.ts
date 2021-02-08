@@ -16,10 +16,7 @@ export class CognifitSdkConfig {
     this.accessToken = accessToken;
     this.clientId = clientId;
     this.sandbox = sandbox;
-
     const packageVersion = new PackageVersion();
-    console.log(packageVersion.version);
-
   }
 
   setAccessToken(accessToken: string): void {
