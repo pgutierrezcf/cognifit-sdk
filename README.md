@@ -26,7 +26,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
 - ### Initialize CogniFit SDK
 
     ```js
-    import { cognifitSdk } from '@cognifit/launcher-js-sdk';
+    import { CognifitSdk } from '@cognifit/launcher-js-sdk';
     import { CognifitSdkConfig } from '@cognifit/launcher-js-sdk/lib/lib/cognifit.sdk.config';
   
   
@@ -35,13 +35,19 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     cognifitUserAccessToken: string;  // Requested in previous section 
     sandbok: boolean;                 // Default false. Sandbox needs to be allowed by CogniFit agent
     
-  
-    cognifitSdk.init(new CognifitSdkConfig(
+    const cognifitSdkConfig = new CognifitSdkConfig(
       containerId,
       clientId,
       cognifitUserAccessToken,
-      sandbok
-    )).then(response => {
+      {
+        sandbox: true,  // Default false
+        appType: 'web', // 'web' or 'app'
+        theme: 'light', // 'light' or 'dark' 
+        showResults: false
+      }   
+    );
+  
+    cognifitSdk.init(cognifitSdkConfig).then(response => {
     
     }).catch(error => {
     
@@ -58,14 +64,14 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
       typeValue, 
       keyValue
     ).then(cognifitSdkResponse => {
-      if (CognifitSdkResponse.isSessionCompleted()) {
-        CognifitSdkResponse.typeValue;
-        CognifitSdkResponse.keyValue;
+      if (cognifitSdkResponse.isSessionCompleted()) {
+        cognifitSdkResponse.typeValue;
+        cognifitSdkResponse.keyValue;
       }
-      if (CognifitSdkResponse.isSessionAborted()) {
+      if (cognifitSdkResponse.isSessionAborted()) {
       
       }
-      if (CognifitSdkResponse.isErrorLogin()) {
+      if (cognifitSdkResponse.isErrorLogin()) {
       
       } 
     }).catch(error => {

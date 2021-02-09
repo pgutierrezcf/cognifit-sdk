@@ -6,19 +6,42 @@ export class CognifitSdkConfig {
   containerId: string;
   accessToken: string;
   clientId: string;
+
+  // Extra Configuration
   sandbox: boolean;
+  appType: string;
+  theme: string;
+  showResults: boolean;
+
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
 
-  constructor(containerId: string = '', clientId: string = '', accessToken: string = '', sandbox: boolean = false) {
+  constructor(containerId: string = '', clientId: string = '', accessToken: string = '', extraConfiguration :any|boolean = {}) {
     this.containerId = containerId;
     this.accessToken = accessToken;
-    this.clientId = clientId;
-    this.sandbox = sandbox;
-    this.sdkHtml5Version = new PackageVersion().getMinor();
+    this.clientId    = clientId;
+
+    /** In 2.0.0, extraConfiguration was sandbox */
+    if(typeof extraConfiguration === 'boolean'){
+      extraConfiguration = {
+        sandbox: extraConfiguration
+      };
+    }
+
+    // Extra Configuration
+    this.sandbox      = (typeof extraConfiguration.sandbox === 'boolean') ? extraConfiguration.sandbox : false;
+    this.showResults  = (typeof extraConfiguration.showResults === 'boolean') ? extraConfiguration.showResults : false;
+    this.appType      = this.filterAppType(extraConfiguration);
+    this.theme        = this.filterTheme(extraConfiguration);
+
+    if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
+      this.sdkHtml5Version = extraConfiguration.jsVersion;
+    } else {
+      this.sdkHtml5Version = new PackageVersion().getMinor();
+    }
   }
 
   setAccessToken(accessToken: string): void {
@@ -34,10 +57,7 @@ export class CognifitSdkConfig {
     // @ts-ignore
     if (this.resourceHtml5Loader) {
       // @ts-ignore
-      this.resourceHtml5Loader.loadMode(this.jsVersion, type, key, this.containerId, {
-        clientId: this.clientId,
-        accessToken: this.accessToken,
-      });
+      this.resourceHtml5Loader.loadMode(this.jsVersion, type, key, this.containerId, this.buildExtraParams());
       window.addEventListener(
         'message',
         (message) => {
@@ -95,6 +115,37 @@ export class CognifitSdkConfig {
     return this.sandbox
       ? 'https://prejs.cognifit.com/' + this.jsVersion + '/html5Loader.js'
       : 'https://js.cognifit.com/' + this.jsVersion + '/html5Loader.js';
+  }
+
+  private filterAppType(extraConfiguration: any): string{
+    const values = ['web', 'app'];
+    if (typeof extraConfiguration.appType === 'string' && extraConfiguration.sandbox) {
+      if (values.indexOf(extraConfiguration.appType) > -1) {
+        return extraConfiguration.appType;
+      }
+    }
+    return values[0];
+  }
+
+  private filterTheme(extraConfiguration: any): string{
+    const values = ['light', 'dark'];
+    if (typeof extraConfiguration.theme === 'string' && extraConfiguration.theme) {
+      if (values.indexOf(extraConfiguration.theme) > -1) {
+        return extraConfiguration.theme;
+      }
+    }
+    return values[0];
+  }
+
+  private buildExtraParams(): {} {
+    return {
+        clientId: this.clientId,
+        accessToken: this.accessToken,
+        environment: this.sandbox ? 'preprod' : 'production',
+        appType: this.appType,
+        theme: this.theme,
+        showResults: this.showResults
+    }
   }
 
 }
