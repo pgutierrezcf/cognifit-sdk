@@ -19,23 +19,28 @@ export class CognifitSdkConfig {
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
 
-  constructor(containerId: string = '', clientId: string = '', accessToken: string = '', extraConfiguration :any|boolean = {}) {
+  constructor(
+    containerId: string = '',
+    clientId: string = '',
+    accessToken: string = '',
+    extraConfiguration: any | boolean = {},
+  ) {
     this.containerId = containerId;
     this.accessToken = accessToken;
-    this.clientId    = clientId;
+    this.clientId = clientId;
 
     /** In 2.0.0, extraConfiguration was sandbox */
-    if(typeof extraConfiguration === 'boolean'){
+    if (typeof extraConfiguration === 'boolean') {
       extraConfiguration = {
-        sandbox: extraConfiguration
+        sandbox: extraConfiguration,
       };
     }
 
     // Extra Configuration
-    this.sandbox      = (typeof extraConfiguration.sandbox === 'boolean') ? extraConfiguration.sandbox : false;
-    this.showResults  = (typeof extraConfiguration.showResults === 'boolean') ? extraConfiguration.showResults : false;
-    this.appType      = this.filterAppType(extraConfiguration);
-    this.theme        = this.filterTheme(extraConfiguration);
+    this.sandbox = typeof extraConfiguration.sandbox === 'boolean' ? extraConfiguration.sandbox : false;
+    this.showResults = typeof extraConfiguration.showResults === 'boolean' ? extraConfiguration.showResults : false;
+    this.appType = this.filterAppType(extraConfiguration);
+    this.theme = this.filterTheme(extraConfiguration);
 
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
       this.sdkHtml5Version = extraConfiguration.jsVersion;
@@ -117,7 +122,7 @@ export class CognifitSdkConfig {
       : 'https://js.cognifit.com/' + this.jsVersion + '/html5Loader.js';
   }
 
-  private filterAppType(extraConfiguration: any): string{
+  private filterAppType(extraConfiguration: any): string {
     const values = ['web', 'app'];
     if (typeof extraConfiguration.appType === 'string' && extraConfiguration.sandbox) {
       if (values.indexOf(extraConfiguration.appType) > -1) {
@@ -127,7 +132,7 @@ export class CognifitSdkConfig {
     return values[0];
   }
 
-  private filterTheme(extraConfiguration: any): string{
+  private filterTheme(extraConfiguration: any): string {
     const values = ['light', 'dark'];
     if (typeof extraConfiguration.theme === 'string' && extraConfiguration.theme) {
       if (values.indexOf(extraConfiguration.theme) > -1) {
@@ -139,13 +144,12 @@ export class CognifitSdkConfig {
 
   private buildExtraParams(): {} {
     return {
-        clientId: this.clientId,
-        accessToken: this.accessToken,
-        environment: this.sandbox ? 'preprod' : 'production',
-        appType: this.appType,
-        theme: this.theme,
-        showResults: this.showResults
-    }
+      clientId: this.clientId,
+      accessToken: this.accessToken,
+      environment: this.sandbox ? 'preprod' : 'production',
+      appType: this.appType,
+      theme: this.theme,
+      showResults: this.showResults,
+    };
   }
-
 }
