@@ -25,6 +25,8 @@ export class CognifitSdkConfig {
     accessToken: string = '',
     extraConfiguration: any | boolean = {},
   ) {
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkConfig.constructor');
     this.containerId = containerId;
     this.accessToken = accessToken;
     this.clientId = clientId;
@@ -43,8 +45,12 @@ export class CognifitSdkConfig {
     this.theme = this.filterTheme(extraConfiguration);
 
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
+      // tslint:disable-next-line:no-console
+      console.log('*** JSDK *** CognifitSdkConfig.constructor 1');
       this.sdkHtml5Version = extraConfiguration.jsVersion;
     } else {
+      // tslint:disable-next-line:no-console
+      console.log('*** JSDK *** CognifitSdkConfig.constructor 2');
       this.sdkHtml5Version = new PackageVersion().getMinor();
     }
   }
@@ -58,17 +64,32 @@ export class CognifitSdkConfig {
   }
 
   loadMode(type: string, key: string, resolve: (value: any) => void, reject: (reason?: any) => void) {
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkConfig.loadMode ');
+    // tslint:disable-next-line:no-console
+    console.log(type);
+    // tslint:disable-next-line:no-console
+    console.log(key);
+
     type = type.toLowerCase() + 'Mode';
     // @ts-ignore
     if (this.resourceHtml5Loader) {
+      // tslint:disable-next-line:no-console
+      console.log('*** JSDK *** CognifitSdkConfig.loadMode 1');
       // @ts-ignore
       this.resourceHtml5Loader.loadMode(this.jsVersion, type, key, this.containerId, this.buildExtraParams());
       window.addEventListener(
         'message',
         (message) => {
+          // tslint:disable-next-line:no-console
+          console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
           resolve(new CognifitSdkResponse(message.data));
+          // tslint:disable-next-line:no-console
+          console.log('*** JSDK *** CognifitSdkConfig.loadMode 3');
           // @ts-ignore
           document.getElementById(this.containerId).innerHTML = '';
+          // tslint:disable-next-line:no-console
+          console.log('*** JSDK *** CognifitSdkConfig.loadMode 4');
         },
         false,
       );
@@ -76,6 +97,8 @@ export class CognifitSdkConfig {
   }
 
   async loadResource(resolve: (value: string) => void, reject: (reason?: string) => void) {
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkConfig.loadResource 1');
     const node = document.createElement('script');
     node.src = await this.getResourceUrl();
     node.type = 'text/javascript';
@@ -84,27 +107,41 @@ export class CognifitSdkConfig {
     document.getElementsByTagName('head')[0].appendChild(node);
     this.checkResourceLoadedTimes = 0;
     this.checkResourceLoaded(resolve, reject);
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkConfig.loadResource 2');
   }
 
   private checkResourceLoaded(resolve: (value: string) => void, reject: (reason?: string) => void) {
     setTimeout(() => {
+      // tslint:disable-next-line:no-console
+      console.log('*** JSDK *** CognifitSdkConfig.checkResourceLoaded 1');
       this.checkResourceLoadedTimes++;
       if (this.checkResourceLoadedTimes < 500) {
+        // tslint:disable-next-line:no-console
+        console.log('*** JSDK *** CognifitSdkConfig.checkResourceLoaded 2');
         // @ts-ignore
         if (typeof window.HTML5JS !== 'undefined') {
+          // tslint:disable-next-line:no-console
+          console.log('*** JSDK *** CognifitSdkConfig.checkResourceLoaded 3');
           // @ts-ignore
           this.resourceHtml5Loader = window.HTML5JS;
           resolve('CogniFit SDK loaded');
         } else {
+          // tslint:disable-next-line:no-console
+          console.log('*** JSDK *** CognifitSdkConfig.checkResourceLoaded 4');
           this.checkResourceLoaded(resolve, reject);
         }
       } else {
+        // tslint:disable-next-line:no-console
+        console.log('*** JSDK *** CognifitSdkConfig.checkResourceLoaded 5');
         reject('Resource not loaded');
       }
     }, 100);
   }
 
   private async setJsVersion(defaultJsVersion: string) {
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkConfig.setJsVersion 1');
     this.jsVersion = defaultJsVersion;
     const httpClient = new HttpClient(new HttpXhrBackend({ build: () => new XMLHttpRequest() }));
     let url = this.sandbox ? 'https://preapi.cognifit.com' : 'https://api.cognifit.com';
@@ -113,6 +150,8 @@ export class CognifitSdkConfig {
     if (remoteJsVersion.version) {
       this.jsVersion = remoteJsVersion.version;
     }
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkConfig.setJsVersion 2');
   }
 
   private async getResourceUrl() {
