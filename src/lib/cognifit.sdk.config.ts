@@ -82,6 +82,10 @@ export class CognifitSdkConfig {
         'message',
         (message) => {
           // tslint:disable-next-line:no-console
+          console.log('*** JSDK *** CognifitSdkConfig.loadMode 1.5');
+          // tslint:disable-next-line:no-console
+          console.log(message);
+          // tslint:disable-next-line:no-console
           console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
           resolve(new CognifitSdkResponse(message.data));
           // tslint:disable-next-line:no-console
