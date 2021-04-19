@@ -86,7 +86,7 @@ export class CognifitSdkConfig {
           // tslint:disable-next-line:no-console
           console.log(message);
 
-          if(typeof message.origin !== 'undefined'){
+          if (typeof message.origin !== 'undefined') {
             if (message.origin === 'https://prejs.cognifit.com' || message.origin === 'https://prejs.cognifit.com') {
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
@@ -97,11 +97,11 @@ export class CognifitSdkConfig {
               document.getElementById(this.containerId).innerHTML = '';
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 4');
-            }else{
+            } else {
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode Not same origin');
             }
-          }else{
+          } else {
             // tslint:disable-next-line:no-console
             console.log('*** JSDK *** CognifitSdkConfig.loadMode No origin');
           }
