@@ -85,15 +85,26 @@ export class CognifitSdkConfig {
           console.log('*** JSDK *** CognifitSdkConfig.loadMode 1.5');
           // tslint:disable-next-line:no-console
           console.log(message);
-          // tslint:disable-next-line:no-console
-          console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
-          resolve(new CognifitSdkResponse(message.data));
-          // tslint:disable-next-line:no-console
-          console.log('*** JSDK *** CognifitSdkConfig.loadMode 3');
-          // @ts-ignore
-          document.getElementById(this.containerId).innerHTML = '';
-          // tslint:disable-next-line:no-console
-          console.log('*** JSDK *** CognifitSdkConfig.loadMode 4');
+
+          if(typeof message.origin !== 'undefined'){
+            if (message.origin === 'https://prejs.cognifit.com' || message.origin === 'https://prejs.cognifit.com') {
+              // tslint:disable-next-line:no-console
+              console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
+              resolve(new CognifitSdkResponse(message.data));
+              // tslint:disable-next-line:no-console
+              console.log('*** JSDK *** CognifitSdkConfig.loadMode 3');
+              // @ts-ignore
+              document.getElementById(this.containerId).innerHTML = '';
+              // tslint:disable-next-line:no-console
+              console.log('*** JSDK *** CognifitSdkConfig.loadMode 4');
+            }else{
+              // tslint:disable-next-line:no-console
+              console.log('*** JSDK *** CognifitSdkConfig.loadMode Not same origin');
+            }
+          }else{
+            // tslint:disable-next-line:no-console
+            console.log('*** JSDK *** CognifitSdkConfig.loadMode No origin');
+          }
         },
         false,
       );
