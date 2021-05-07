@@ -12,6 +12,7 @@ export class CognifitSdkConfig {
   appType: string;
   theme: string;
   showResults: boolean;
+  customCss: string;
 
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
@@ -43,6 +44,7 @@ export class CognifitSdkConfig {
     this.showResults = typeof extraConfiguration.showResults === 'boolean' ? extraConfiguration.showResults : false;
     this.appType = this.filterAppType(extraConfiguration);
     this.theme = this.filterTheme(extraConfiguration);
+    this.customCss = this.filterCustomCss(extraConfiguration);
 
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
       // tslint:disable-next-line:no-console
@@ -196,6 +198,13 @@ export class CognifitSdkConfig {
     return values[0];
   }
 
+  private filterCustomCss(extraConfiguration: any): string {;
+    if (typeof extraConfiguration.customCss === 'string' && extraConfiguration.customCss) {
+      return extraConfiguration.customCss;
+    }
+    return '';
+  }
+
   private buildExtraParams(): {} {
     return {
       clientId: this.clientId,
@@ -203,6 +212,7 @@ export class CognifitSdkConfig {
       environment: this.sandbox ? 'preprod' : 'production',
       appType: this.appType,
       theme: this.theme,
+      customCss: this.customCss,
       showResults: this.showResults,
     };
   }
