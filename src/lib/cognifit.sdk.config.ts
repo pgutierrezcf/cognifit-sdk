@@ -198,7 +198,7 @@ export class CognifitSdkConfig {
     return values[0];
   }
 
-  private filterCustomCss(extraConfiguration: any): string {;
+  private filterCustomCss(extraConfiguration: any): string {
     if (typeof extraConfiguration.customCss === 'string' && extraConfiguration.customCss) {
       return extraConfiguration.customCss;
     }
