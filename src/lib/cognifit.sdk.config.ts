@@ -1,6 +1,7 @@
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { PackageVersion } from '../environments/version';
 import { CognifitSdkResponse } from './cognifit.sdk.response';
+import { Subscriber } from 'rxjs';
 
 export class CognifitSdkConfig {
   containerId: string;
@@ -65,7 +66,7 @@ export class CognifitSdkConfig {
     return this.accessToken;
   }
 
-  loadMode(type: string, key: string, resolve: (value: any) => void, reject: (reason?: any) => void) {
+  loadMode(type: string, key: string, subscriber: Subscriber<any>) {
     // tslint:disable-next-line:no-console
     console.log('*** JSDK *** CognifitSdkConfig.loadMode ');
     // tslint:disable-next-line:no-console
@@ -92,7 +93,7 @@ export class CognifitSdkConfig {
             if (message.origin === 'https://prejs.cognifit.com' || message.origin === 'https://prejs.cognifit.com') {
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
-              resolve(new CognifitSdkResponse(message.data));
+              subscriber.next(new CognifitSdkResponse(message.data));
               if (message.data.hasOwnProperty('calculated')) {
                 if (message.data.calculated) {
                   // tslint:disable-next-line:no-console
@@ -100,6 +101,7 @@ export class CognifitSdkConfig {
                   return true;
                 }
               }
+              subscriber.complete();
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 3');
               // @ts-ignore

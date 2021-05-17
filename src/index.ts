@@ -1,6 +1,7 @@
 import { CognifitSdkError } from './lib/cognifit.sdk.error';
 import { CognifitSdkValidator } from './lib/cognifit.sdk.validator';
 import { CognifitSdkConfig } from './lib/cognifit.sdk.config';
+import { Observable } from 'rxjs';
 
 export class CognifitSdk {
   cognifitSdkConfig = new CognifitSdkConfig();
@@ -30,9 +31,29 @@ export class CognifitSdk {
     });
   }
 
-  public start(type: string, key: string): Promise<any> {
+  public start(type: string, key: string): Observable<any> {
     // tslint:disable-next-line:no-console
     console.log('*** JSDK *** CognifitSdk.start');
+
+    return new Observable<any>((subscriber) => {
+      // tslint:disable-next-line:no-console
+      console.log('*** JSDK *** CognifitSdk.1');
+      // tslint:disable-next-line:no-console
+      console.log(type);
+      // tslint:disable-next-line:no-console
+      console.log(key);
+      if (this.cognifitSdkValidator.validateAllToStart(this, type, key)) {
+        // tslint:disable-next-line:no-console
+        console.log('*** JSDK *** CognifitSdk.start 1');
+        this.cognifitSdkConfig.loadMode(type, key, subscriber);
+      } else {
+        // tslint:disable-next-line:no-console
+        console.log('*** JSDK *** CognifitSdk.start cognifitSdkError');
+        subscriber.error('Check cognifitSdkError');
+      }
+    });
+
+    /*
     return new Promise((resolve, reject) => {
       // tslint:disable-next-line:no-console
       console.log('*** JSDK *** CognifitSdk.1');
@@ -50,5 +71,6 @@ export class CognifitSdk {
         reject('Check cognifitSdkError');
       }
     });
+    */
   }
 }
