@@ -4,15 +4,18 @@ test('Testing CognifitSdkResponse Game Mode completed', () => {
   const statusValue = 'completed';
   const modeValue = 'gameMode';
   const keyValue = 'LANE_SPLITTER';
+  const justCalculated = false;
   const cognifitSdkResponse = new CognifitSdkResponse({
     status: statusValue,
     mode: modeValue,
     key: keyValue,
+    calculated: justCalculated
   });
 
   expect(cognifitSdkResponse.status).toBe(statusValue);
   expect(cognifitSdkResponse.typeValue).toBe('GAME');
   expect(cognifitSdkResponse.keyValue).toBe(keyValue);
+  expect(cognifitSdkResponse.justCalculated).toBe(justCalculated);
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(true);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(false);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
@@ -32,6 +35,7 @@ test('Testing CognifitSdkResponse Training Mode completed', () => {
   expect(cognifitSdkResponse.status).toBe(statusValue);
   expect(cognifitSdkResponse.typeValue).toBe('TRAINING');
   expect(cognifitSdkResponse.keyValue).toBe(keyValue);
+  expect(cognifitSdkResponse.justCalculated).toBe(false);
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(true);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(false);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
@@ -45,11 +49,13 @@ test('Testing CognifitSdkResponse Assessment Mode completed', () => {
     status: statusValue,
     mode: modeValue,
     key: keyValue,
+    calculated: true
   });
 
   expect(cognifitSdkResponse.status).toBe(statusValue);
   expect(cognifitSdkResponse.typeValue).toBe('ASSESSMENT');
   expect(cognifitSdkResponse.keyValue).toBe(keyValue);
+  expect(cognifitSdkResponse.justCalculated).toBe(true);
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(true);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(false);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
@@ -68,6 +74,7 @@ test('Testing CognifitSdkResponse Game Mode aborted', () => {
   expect(cognifitSdkResponse.status).toBe(statusValue);
   expect(cognifitSdkResponse.typeValue).toBe('GAME');
   expect(cognifitSdkResponse.keyValue).toBe(keyValue);
+  expect(cognifitSdkResponse.justCalculated).toBe(false);
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(false);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(true);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
@@ -87,6 +94,7 @@ test('Testing CognifitSdkResponse Training Mode aborted', () => {
   expect(cognifitSdkResponse.status).toBe(statusValue);
   expect(cognifitSdkResponse.typeValue).toBe('TRAINING');
   expect(cognifitSdkResponse.keyValue).toBe(keyValue);
+  expect(cognifitSdkResponse.justCalculated).toBe(false);
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(false);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(true);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
@@ -105,6 +113,7 @@ test('Testing CognifitSdkResponse Assessment Mode aborted', () => {
   expect(cognifitSdkResponse.status).toBe(statusValue);
   expect(cognifitSdkResponse.typeValue).toBe('ASSESSMENT');
   expect(cognifitSdkResponse.keyValue).toBe(keyValue);
+  expect(cognifitSdkResponse.justCalculated).toBe(false);
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(false);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(true);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
