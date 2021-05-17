@@ -93,7 +93,7 @@ export class CognifitSdkConfig {
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
               resolve(new CognifitSdkResponse(message.data));
-              if (message.data.hasOwnProperty(message.data.calculated)) {
+              if (message.data.hasOwnProperty('calculated')) {
                 if (message.data.calculated) {
                   // tslint:disable-next-line:no-console
                   console.log('*** JSDK *** CognifitSdkConfig.loadMode only calculate');
