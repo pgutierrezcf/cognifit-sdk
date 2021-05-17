@@ -7,10 +7,10 @@ export class CognifitSdkResponse {
   constructor(data: any) {
     // tslint:disable-next-line:no-console
     console.log('*** JSDK *** CognifitSdkResponse.constructor 1');
-    this.status         = data.status;
-    this.typeValue      = this._formatType(data.mode);
-    this.keyValue       = data.key;
-    this.justCalculated = (data.hasOwnProperty('calculated')) ? data.calculated : false;
+    this.status = data.status;
+    this.typeValue = this._formatType(data.mode);
+    this.keyValue = data.key;
+    this.justCalculated = data.hasOwnProperty('calculated') ? data.calculated : false;
     // tslint:disable-next-line:no-console
     console.log(this.status);
     // tslint:disable-next-line:no-console

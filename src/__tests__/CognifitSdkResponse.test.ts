@@ -9,7 +9,7 @@ test('Testing CognifitSdkResponse Game Mode completed', () => {
     status: statusValue,
     mode: modeValue,
     key: keyValue,
-    calculated: justCalculated
+    calculated: justCalculated,
   });
 
   expect(cognifitSdkResponse.status).toBe(statusValue);
@@ -49,7 +49,7 @@ test('Testing CognifitSdkResponse Assessment Mode completed', () => {
     status: statusValue,
     mode: modeValue,
     key: keyValue,
-    calculated: true
+    calculated: true,
   });
 
   expect(cognifitSdkResponse.status).toBe(statusValue);
