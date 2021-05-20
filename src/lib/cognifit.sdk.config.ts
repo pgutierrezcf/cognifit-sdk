@@ -14,6 +14,7 @@ export class CognifitSdkConfig {
   theme: string;
   showResults: boolean;
   customCss: string;
+  screensNotToShow: string[];
 
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
@@ -46,6 +47,7 @@ export class CognifitSdkConfig {
     this.appType = this.filterAppType(extraConfiguration);
     this.theme = this.filterTheme(extraConfiguration);
     this.customCss = this.filterCustomCss(extraConfiguration);
+    this.screensNotToShow = this.filterScreensNotToShow(extraConfiguration);
 
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
       // tslint:disable-next-line:no-console
@@ -214,6 +216,24 @@ export class CognifitSdkConfig {
     return '';
   }
 
+  private filterScreensNotToShow(extraConfiguration: any): string[] {
+    if (typeof extraConfiguration.screensNotToShow === 'object'){
+      if (typeof extraConfiguration.screensNotToShow.length === 'number') {
+        if (extraConfiguration.screensNotToShow.length > 0) {
+          const screensNotToShow = [];
+          let i;
+          for (i = 0; i < extraConfiguration.screensNotToShow.length; i++) {
+            if (typeof extraConfiguration.screensNotToShow[i] === 'string') {
+              screensNotToShow.push(extraConfiguration.screensNotToShow[i]);
+            }
+          }
+          return screensNotToShow;
+        }
+      }
+    }
+    return [];
+  }
+
   private buildExtraParams(): {} {
     return {
       clientId: this.clientId,
@@ -222,6 +242,7 @@ export class CognifitSdkConfig {
       appType: this.appType,
       theme: this.theme,
       customCss: this.customCss,
+      screensNotToShow: this.screensNotToShow,
       showResults: this.showResults,
     };
   }
