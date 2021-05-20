@@ -217,7 +217,7 @@ export class CognifitSdkConfig {
   }
 
   private filterScreensNotToShow(extraConfiguration: any): string[] {
-    if (typeof extraConfiguration.screensNotToShow === 'object'){
+    if (typeof extraConfiguration.screensNotToShow === 'object') {
       if (typeof extraConfiguration.screensNotToShow.length === 'number') {
         if (extraConfiguration.screensNotToShow.length > 0) {
           const screensNotToShow = [];
