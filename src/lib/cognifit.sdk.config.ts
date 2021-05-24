@@ -92,7 +92,7 @@ export class CognifitSdkConfig {
           console.log(message);
 
           if (typeof message.origin !== 'undefined') {
-            if (message.origin === 'https://prejs.cognifit.com' || message.origin === 'https://prejs.cognifit.com') {
+            if (message.origin === 'https://prejs.cognifit.com' || message.origin === 'https://js.cognifit.com') {
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 2');
               subscriber.next(new CognifitSdkResponse(message.data));
