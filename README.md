@@ -14,7 +14,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
 
 ### Installation
 
-      $ npm install @cognifit/launcher-js-sdk@@latest
+      $ npm install @cognifit/launcher-js-sdk
 
 ---
 
