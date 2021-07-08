@@ -63,19 +63,25 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     cognifitSdk.start(
       typeValue, 
       keyValue
-    ).then(cognifitSdkResponse => {
-      if (cognifitSdkResponse.isSessionCompleted()) {
-        cognifitSdkResponse.typeValue;
-        cognifitSdkResponse.keyValue;
-      }
-      if (cognifitSdkResponse.isSessionAborted()) {
-      
-      }
-      if (cognifitSdkResponse.isErrorLogin()) {
-      
-      } 
-    }).catch(error => {
-    
+    ).subscribe({
+        next: (cognifitSdkResponse) => {
+          if (cognifitSdkResponse.isSessionCompleted()) {
+            cognifitSdkResponse.typeValue;
+            cognifitSdkResponse.keyValue;
+          }
+          if (cognifitSdkResponse.isSessionAborted()) {
+          
+          }
+          if (cognifitSdkResponse.isErrorLogin()) {
+          
+          }
+        },
+		complete: () => {
+			
+		},
+		error: (reason) => {
+			
+		}
     });
     ```
 
