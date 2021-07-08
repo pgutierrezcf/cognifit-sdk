@@ -1,5 +1,5 @@
 export class PackageVersion {
-  version = '2.0.12';
+  version = '2.0.13';
 
   getPatch(): string {
     return this.version;
