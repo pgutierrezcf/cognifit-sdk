@@ -255,7 +255,7 @@ export class CognifitSdkConfig {
       customCss: this.customCss,
       screensNotToShow: this.screensNotToShow,
       showResults: this.showResults,
-      scale: this.scale
+      scale: this.scale,
     };
   }
 }
