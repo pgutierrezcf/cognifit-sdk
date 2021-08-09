@@ -238,7 +238,9 @@ export class CognifitSdkConfig {
 
   private filterScale(extraConfiguration: any): number {
     if (typeof extraConfiguration.scale === 'number' && extraConfiguration.scale) {
-      return extraConfiguration.scale;
+      if(extraConfiguration.scale >= 100 && extraConfiguration.scale <= 1000){
+        return Math.round(extraConfiguration.scale);
+      }
     }
     return 800;
   }
