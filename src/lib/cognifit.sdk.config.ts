@@ -19,7 +19,7 @@ export class CognifitSdkConfig {
 
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
-  webhooks = [];
+  webhooks: any[]  = [];
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
