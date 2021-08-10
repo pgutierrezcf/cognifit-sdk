@@ -19,6 +19,7 @@ export class CognifitSdkConfig {
 
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
+  webhooks = [];
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
@@ -176,9 +177,13 @@ export class CognifitSdkConfig {
     const httpClient = new HttpClient(new HttpXhrBackend({ build: () => new XMLHttpRequest() }));
     let url = this.sandbox ? 'https://preapi.cognifit.com' : 'https://api.cognifit.com';
     url += '/description/versions/sdkjs?v=' + this.sdkHtml5Version;
+    url += '&c=' + this.clientId;
     const remoteJsVersion = await httpClient.get<any>(url).toPromise();
     if (remoteJsVersion.version) {
       this.jsVersion = remoteJsVersion.version;
+    }
+    if (remoteJsVersion.webhooks) {
+      this.webhooks = remoteJsVersion.webhooks;
     }
     // tslint:disable-next-line:no-console
     console.log('*** JSDK *** CognifitSdkConfig.setJsVersion 2');
@@ -246,7 +251,7 @@ export class CognifitSdkConfig {
   }
 
   private buildExtraParams(): {} {
-    return {
+    const params: any = {
       clientId: this.clientId,
       accessToken: this.accessToken,
       environment: this.sandbox ? 'preprod' : 'production',
@@ -255,7 +260,13 @@ export class CognifitSdkConfig {
       customCss: this.customCss,
       screensNotToShow: this.screensNotToShow,
       showResults: this.showResults,
-      scale: this.scale,
+      scale: this.scale
     };
+
+    if(this.webhooks.length){
+      params.webhooks = this.webhooks;
+    }
+
+    return params;
   }
 }
