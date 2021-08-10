@@ -260,10 +260,10 @@ export class CognifitSdkConfig {
       customCss: this.customCss,
       screensNotToShow: this.screensNotToShow,
       showResults: this.showResults,
-      scale: this.scale
+      scale: this.scale,
     };
 
-    if(this.webhooks.length){
+    if (this.webhooks.length) {
       params.webhooks = this.webhooks;
     }
 
