@@ -20,6 +20,7 @@ export class CognifitSdkConfig {
   sdkHtml5Version: string;
   jsVersion = '2021-01-29_1627_thorin';
   webhooks: any[] = [];
+  customTasks: any = {};
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
@@ -185,6 +186,11 @@ export class CognifitSdkConfig {
     if (remoteJsVersion.webhooks) {
       this.webhooks = remoteJsVersion.webhooks;
     }
+    if (remoteJsVersion.customTasks) {
+      this.customTasks = remoteJsVersion.customTasks;
+      // tslint:disable-next-line:no-console
+      console.log(remoteJsVersion.customTasks);
+    }
     // tslint:disable-next-line:no-console
     console.log('*** JSDK *** CognifitSdkConfig.setJsVersion 2');
   }
@@ -261,6 +267,7 @@ export class CognifitSdkConfig {
       screensNotToShow: this.screensNotToShow,
       showResults: this.showResults,
       scale: this.scale,
+      customTasks: this.customTasks
     };
 
     if (this.webhooks.length) {
