@@ -267,7 +267,7 @@ export class CognifitSdkConfig {
       screensNotToShow: this.screensNotToShow,
       showResults: this.showResults,
       scale: this.scale,
-      customTasks: this.customTasks
+      customTasks: this.customTasks,
     };
 
     if (this.webhooks.length) {
