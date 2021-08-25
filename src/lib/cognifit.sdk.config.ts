@@ -32,7 +32,7 @@ export class CognifitSdkConfig {
     extraConfiguration: any | boolean = {},
   ) {
     // tslint:disable-next-line:no-console
-    console.log('*** JSDK *** CognifitSdkConfig.constructor 0001');
+    console.log('*** JSDK *** CognifitSdkConfig.constructor');
     this.containerId = containerId;
     this.accessToken = accessToken;
     this.clientId = clientId;
