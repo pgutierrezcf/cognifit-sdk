@@ -13,7 +13,7 @@ export class CognifitSdkConfig {
   appType: string;
   theme: string;
   showResults: boolean;
-  customCss: string;
+  customCss: string[];
   screensNotToShow: string[];
   scale: number;
 
@@ -32,7 +32,7 @@ export class CognifitSdkConfig {
     extraConfiguration: any | boolean = {},
   ) {
     // tslint:disable-next-line:no-console
-    console.log('*** JSDK *** CognifitSdkConfig.constructor');
+    console.log('*** JSDK *** CognifitSdkConfig.constructor 0001');
     this.containerId = containerId;
     this.accessToken = accessToken;
     this.clientId = clientId;
@@ -188,8 +188,9 @@ export class CognifitSdkConfig {
     }
     if (remoteJsVersion.customTasks) {
       this.customTasks = remoteJsVersion.customTasks;
-      // tslint:disable-next-line:no-console
-      console.log(remoteJsVersion.customTasks);
+    }
+    if (remoteJsVersion.customCss) {
+      this.customCss = remoteJsVersion.customCss;
     }
     // tslint:disable-next-line:no-console
     console.log('*** JSDK *** CognifitSdkConfig.setJsVersion 2');
@@ -222,11 +223,21 @@ export class CognifitSdkConfig {
     return values[0];
   }
 
-  private filterCustomCss(extraConfiguration: any): string {
+  private filterCustomCss(extraConfiguration: any): string[] {
     if (typeof extraConfiguration.customCss === 'string' && extraConfiguration.customCss) {
-      return extraConfiguration.customCss;
+      return [extraConfiguration.customCss];
+    } else if (typeof extraConfiguration.customCss === 'object' && extraConfiguration.customCss) {
+      let isStringArray = true;
+      extraConfiguration.customCss.forEach((value: any) => {
+        if (typeof value !== 'string') {
+          isStringArray = false;
+        }
+      });
+      if (isStringArray) {
+        return extraConfiguration.customCss;
+      }
     }
-    return '';
+    return [];
   }
 
   private filterScreensNotToShow(extraConfiguration: any): string[] {
