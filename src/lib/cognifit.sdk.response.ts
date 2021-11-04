@@ -1,8 +1,11 @@
+import { CognifitSdkEvent } from './cognifit.sdk.event';
+
 export class CognifitSdkResponse {
   status: string;
   typeValue: string;
   keyValue: string;
   justCalculated: boolean;
+  eventPayload: CognifitSdkEvent;
 
   constructor(data: any) {
     // tslint:disable-next-line:no-console
@@ -11,6 +14,7 @@ export class CognifitSdkResponse {
     this.typeValue = this._formatType(data.mode);
     this.keyValue = data.key;
     this.justCalculated = data.hasOwnProperty('calculated') ? data.calculated : false;
+    this.eventPayload = new CognifitSdkEvent(data.hasOwnProperty('eventPayload') ? data.eventPayload : {});
     // tslint:disable-next-line:no-console
     console.log(this.status);
     // tslint:disable-next-line:no-console
@@ -43,6 +47,14 @@ export class CognifitSdkResponse {
     // tslint:disable-next-line:no-console
     console.log(this.status);
     return this.status === 'errorLogin';
+  }
+
+  isEvent() {
+    // tslint:disable-next-line:no-console
+    console.log('*** JSDK *** CognifitSdkResponse.isEvent 1');
+    // tslint:disable-next-line:no-console
+    console.log(this.status);
+    return this.status === 'event';
   }
 
   private _formatType(dataMode: string): string {

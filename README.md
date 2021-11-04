@@ -30,20 +30,24 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     import { CognifitSdkConfig } from '@cognifit/launcher-js-sdk/lib/lib/cognifit.sdk.config';
   
   
-    containerId: string               // Target container for CogniFitLoading
-    clientId: string;                 // Provided by CogniFit agent
-    cognifitUserAccessToken: string;  // Requested in previous section 
-    sandbok: boolean;                 // Default false. Sandbox needs to be allowed by CogniFit agent
-    
+    containerId: string               // Target container for CogniFitLoading.
+    clientId: string;                 // Provided by CogniFit agent.
+    cognifitUserAccessToken: string;  // Requested in previous section. 
+    sandbok: boolean;                 // Default false. Sandbox needs to be allowed by CogniFit agent.
+   
     const cognifitSdkConfig = new CognifitSdkConfig(
       containerId,
       clientId,
       cognifitUserAccessToken,
       {
-        sandbox: true,  // Default false
-        appType: 'web', // 'web' or 'app'
-        theme: 'light', // 'light' or 'dark' 
-        showResults: false
+        sandbox: true,            // Default false.
+        appType: 'web',           // 'web' or 'app'.
+        theme: 'light',           // 'light' or 'dark'.
+        showResults: false,
+        customCss: '',            // Url to custom css file.
+        screensNotToShow: [],     // List of screens not to show after the session.
+        scale: 100,               // Default 800. Maximum value used to display values.
+        listenEvent: true         // Default false. If true, events will be triggered during game life.
       }   
     );
   
@@ -73,7 +77,10 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
           
           }
           if (cognifitSdkResponse.isErrorLogin()) {
-          
+
+          }
+          if (cognifitSdkResponse.isEvent()) {
+            const eventPayloadValues = cognifitSdkResponse.eventPayload.getValues();
           }
         },
 		complete: () => {

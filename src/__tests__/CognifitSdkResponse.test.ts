@@ -1,4 +1,5 @@
 import { CognifitSdkResponse } from '../lib/cognifit.sdk.response';
+import { CognifitSdkEvent } from '../lib/cognifit.sdk.event';
 
 test('Testing CognifitSdkResponse Game Mode completed', () => {
   const statusValue = 'completed';
@@ -129,4 +130,28 @@ test('Testing CognifitSdkResponse Login Error', () => {
   expect(cognifitSdkResponse.isSessionCompleted()).toBe(false);
   expect(cognifitSdkResponse.isSessionAborted()).toBe(false);
   expect(cognifitSdkResponse.isErrorLogin()).toBe(true);
+});
+
+test('Testing CognifitSdkResponse General Event', () => {
+  const statusValue = 'event';
+  const modeValue = 'assessmentMode';
+  const keyValue = 'DRIVING_ASSESSMENT';
+  const eventPayload: {[key: string]: any;} = {key1: 1, key2: 2};
+  const cognifitSdkResponse = new CognifitSdkResponse({
+    status: statusValue,
+    mode: modeValue,
+    key: keyValue,
+    eventPayload
+  });
+
+  expect(cognifitSdkResponse.status).toBe(statusValue);
+  expect(cognifitSdkResponse.isSessionCompleted()).toBe(false);
+  expect(cognifitSdkResponse.isSessionAborted()).toBe(false);
+  expect(cognifitSdkResponse.isErrorLogin()).toBe(false);
+  expect(cognifitSdkResponse.isEvent()).toBe(true);
+  expect(cognifitSdkResponse.eventPayload).toBeInstanceOf(CognifitSdkEvent);
+  expect(cognifitSdkResponse.eventPayload.getValue('key1')).toBe(1);
+  expect(cognifitSdkResponse.eventPayload.getValue('key2')).toBe(2);
+  expect(cognifitSdkResponse.eventPayload.getValue('key3')).toBe(undefined);
+  expect(cognifitSdkResponse.eventPayload.getValues()).toStrictEqual({key1: 1, key2: 2});
 });

@@ -21,6 +21,7 @@ export class CognifitSdkConfig {
   jsVersion = '2021-01-29_1627_thorin';
   webhooks: any[] = [];
   customTasks: any = {};
+  listenEvents: false;
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
@@ -52,6 +53,7 @@ export class CognifitSdkConfig {
     this.customCss = this.filterCustomCss(extraConfiguration);
     this.screensNotToShow = this.filterScreensNotToShow(extraConfiguration);
     this.scale = this.filterScale(extraConfiguration);
+    this.listenEvents = typeof extraConfiguration.listenEvents === 'boolean' ? extraConfiguration.listenEvents : false;
 
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
       // tslint:disable-next-line:no-console
@@ -279,6 +281,7 @@ export class CognifitSdkConfig {
       showResults: this.showResults,
       scale: this.scale,
       customTasks: this.customTasks,
+      listenEvents: this.listenEvents
     };
 
     if (this.webhooks.length) {
@@ -287,4 +290,5 @@ export class CognifitSdkConfig {
 
     return params;
   }
+
 }
