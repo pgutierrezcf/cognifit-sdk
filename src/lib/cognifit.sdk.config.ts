@@ -281,7 +281,7 @@ export class CognifitSdkConfig {
       showResults: this.showResults,
       scale: this.scale,
       customTasks: this.customTasks,
-      listenEvents: this.listenEvents
+      listenEvents: this.listenEvents,
     };
 
     if (this.webhooks.length) {
@@ -290,5 +290,4 @@ export class CognifitSdkConfig {
 
     return params;
   }
-
 }

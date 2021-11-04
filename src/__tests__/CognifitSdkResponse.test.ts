@@ -136,12 +136,12 @@ test('Testing CognifitSdkResponse General Event', () => {
   const statusValue = 'event';
   const modeValue = 'assessmentMode';
   const keyValue = 'DRIVING_ASSESSMENT';
-  const eventPayload: {[key: string]: any;} = {key1: 1, key2: 2};
+  const eventPayload: { [key: string]: any } = { key1: 1, key2: 2 };
   const cognifitSdkResponse = new CognifitSdkResponse({
     status: statusValue,
     mode: modeValue,
     key: keyValue,
-    eventPayload
+    eventPayload,
   });
 
   expect(cognifitSdkResponse.status).toBe(statusValue);
@@ -153,5 +153,5 @@ test('Testing CognifitSdkResponse General Event', () => {
   expect(cognifitSdkResponse.eventPayload.getValue('key1')).toBe(1);
   expect(cognifitSdkResponse.eventPayload.getValue('key2')).toBe(2);
   expect(cognifitSdkResponse.eventPayload.getValue('key3')).toBe(undefined);
-  expect(cognifitSdkResponse.eventPayload.getValues()).toStrictEqual({key1: 1, key2: 2});
+  expect(cognifitSdkResponse.eventPayload.getValues()).toStrictEqual({ key1: 1, key2: 2 });
 });

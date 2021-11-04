@@ -36,7 +36,7 @@ test('Testing CognifitSdkConfig extraConfiguration', () => {
   const clientId = 'EXAMPLE_CLIENT_ID';
   const accessTokenTwo = 'EXAMPLE_ACCESS_TOKEN_TWO';
   const extraConfiguration = {
-    sandbox: true
+    sandbox: true,
   };
   const cognifitSdkConfigTwo = new CognifitSdkConfig(container, clientId, accessTokenTwo, extraConfiguration);
   expect(cognifitSdkConfigTwo.getAccessToken()).not.toBe(accessToken);
@@ -46,7 +46,7 @@ test('Testing CognifitSdkConfig extraConfiguration', () => {
 
   const extraConfigurationTwo = {
     sandbox: true,
-    listenEvents: true
+    listenEvents: true,
   };
   const cognifitSdkConfigThree = new CognifitSdkConfig(container, clientId, accessTokenTwo, extraConfigurationTwo);
   expect(cognifitSdkConfigThree.getAccessToken()).not.toBe(accessToken);
