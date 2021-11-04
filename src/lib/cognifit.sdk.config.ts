@@ -109,6 +109,13 @@ export class CognifitSdkConfig {
                   return true;
                 }
               }
+              if (message.data.hasOwnProperty('status')) {
+                if (message.data.status === 'event') {
+                  // tslint:disable-next-line:no-console
+                  console.log('*** JSDK *** CognifitSdkConfig.loadMode Event');
+                  return true;
+                }
+              }
               subscriber.complete();
               // tslint:disable-next-line:no-console
               console.log('*** JSDK *** CognifitSdkConfig.loadMode 3');
