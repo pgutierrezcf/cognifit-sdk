@@ -47,7 +47,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
         customCss: '',            // Url to custom css file.
         screensNotToShow: [],     // List of screens not to show after the session.
         scale: 100,               // Default 800. Maximum value used to display values.
-        listenEvent: true         // Default false. If true, events will be triggered during game life.
+        listenEvents: true        // Default false. If true, events will be triggered during session life.
       }   
     );
   
@@ -83,10 +83,10 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
             const eventPayloadValues = cognifitSdkResponse.eventPayload.getValues();
           }
         },
-		complete: () => {
+        complete: () => {
 			
 		},
-		error: (reason) => {
+        error: (reason) => {
 			
 		}
     });
