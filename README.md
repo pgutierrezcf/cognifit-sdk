@@ -40,7 +40,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
       clientId,
       cognifitUserAccessToken,
       {
-        sandbox: true,            // Default false.
+        sandbox: false,
         appType: 'web',           // 'web' or 'app'.
         theme: 'light',           // 'light' or 'dark'.
         showResults: false,
