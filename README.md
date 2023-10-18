@@ -46,6 +46,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
         showResults: false,
         customCss: '',            // Url to custom css file.
         screensNotToShow: [],     // List of screens not to show after the session.
+        preferredMobileOrientation: '', // '' (empty), 'landscape' or 'portrait'. This applies only on mobile browsers or embedded webviews
         scale: 100,               // Default 800. Maximum value used to display values.
         listenEvents: true        // Default false. If true, events will be triggered during session life.
       }   
