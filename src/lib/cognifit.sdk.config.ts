@@ -14,6 +14,7 @@ export class CognifitSdkConfig {
   theme: string;
   showResults: boolean;
   customCss: string[];
+  preferredMobileOrientation: string; // portrait|landscape
   screensNotToShow: string[];
   scale: number;
 
@@ -51,6 +52,7 @@ export class CognifitSdkConfig {
     this.appType = this.filterAppType(extraConfiguration);
     this.theme = this.filterTheme(extraConfiguration);
     this.customCss = this.filterCustomCss(extraConfiguration);
+    this.preferredMobileOrientation = this.filterPreferredMobileOrientation(extraConfiguration);
     this.screensNotToShow = this.filterScreensNotToShow(extraConfiguration);
     this.scale = this.filterScale(extraConfiguration);
     this.listenEvents = typeof extraConfiguration.listenEvents === 'boolean' ? extraConfiguration.listenEvents : false;
@@ -250,6 +252,16 @@ export class CognifitSdkConfig {
     return [];
   }
 
+  private filterPreferredMobileOrientation(extraConfiguration: any): string {
+    if (
+      typeof extraConfiguration.preferredMobileOrientation === 'string' &&
+      extraConfiguration.preferredMobileOrientation
+    ) {
+      return extraConfiguration.preferredMobileOrientation;
+    }
+    return 'none';
+  }
+
   private filterScreensNotToShow(extraConfiguration: any): string[] {
     if (typeof extraConfiguration.screensNotToShow === 'object') {
       if (typeof extraConfiguration.screensNotToShow.length === 'number') {
@@ -286,6 +298,7 @@ export class CognifitSdkConfig {
       theme: this.theme,
       customCss: this.customCss,
       screensNotToShow: this.screensNotToShow,
+      orientation: this.preferredMobileOrientation,
       showResults: this.showResults,
       scale: this.scale,
       customTasks: this.customTasks,
