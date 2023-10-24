@@ -41,14 +41,14 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
       cognifitUserAccessToken,
       {
         sandbox: false,
-        appType: 'web',           // 'web' or 'app'.
-        theme: 'light',           // 'light' or 'dark'.
+        appType: 'web',                 // 'web' or 'app'.
+        theme: 'light',                 // 'light' or 'dark'.
         showResults: false,
-        customCss: '',            // Url to custom css file.
-        screensNotToShow: [],     // List of screens not to show after the session.
+        customCss: '',                  // Url to custom css file.
+        screensNotToShow: [],           // List of screens not to show after the session.
         preferredMobileOrientation: '', // '' (empty), 'landscape' or 'portrait'. This applies only on mobile browsers or embedded webviews
-        scale: 100,               // Default 800. Maximum value used to display values.
-        listenEvents: true        // Default false. If true, events will be triggered during session life.
+        scale: 100,                     // Default 800. Maximum value used to display values.
+        listenEvents: true              // Default false. If true, events will be triggered during session life.
       }   
     );
   
