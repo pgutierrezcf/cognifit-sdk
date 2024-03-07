@@ -3,7 +3,7 @@ import { CognifitSdkConfig } from './cognifit.sdk.config';
 import { CognifitSdk } from '../index';
 
 export class CognifitSdkValidator {
-  types = ['ASSESSMENT', 'TRAINING', 'GAME', 'GAMEPICKER'];
+  types = ['ASSESSMENT', 'TRAINING', 'GAME', 'GAMEPICKER', 'PERFORMANCETEST', 'USABILITYTEST'];
 
   public validateAllToStart(cognifitSdk: CognifitSdk, type: string, key: string) {
     // tslint:disable-next-line:no-console
