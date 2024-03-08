@@ -56,6 +56,7 @@ export class CognifitSdkConfig {
     this.screensNotToShow = this.filterScreensNotToShow(extraConfiguration);
     this.scale = this.filterScale(extraConfiguration);
     this.listenEvents = typeof extraConfiguration.listenEvents === 'boolean' ? extraConfiguration.listenEvents : false;
+    this.additionalAttributesAndFlags = Object.assign({}, extraConfiguration.additionalAttributesAndFlags);
 
     // Overriding the jsVersion is NOT recommended because older versions are not guaranteed to be available or work correctly beyond 30 days.
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
@@ -303,6 +304,7 @@ export class CognifitSdkConfig {
       scale: this.scale,
       customTasks: this.customTasks,
       listenEvents: this.listenEvents,
+      additionalAttributesAndFlags: this.additionalAttributesAndFlags,
     };
 
     if (this.webhooks.length) {
