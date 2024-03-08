@@ -23,6 +23,7 @@ export class CognifitSdkConfig {
   webhooks: any[] = [];
   customTasks: any = {};
   listenEvents: false;
+  additionalAttributesAndFlags = {};
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
