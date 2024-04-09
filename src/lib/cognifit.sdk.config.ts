@@ -19,10 +19,11 @@ export class CognifitSdkConfig {
   scale: number;
 
   sdkHtml5Version: string;
-  jsVersion = '2021-01-29_1627_thorin';
+  jsVersion = '2023-05-23_1058_bofur';
   webhooks: any[] = [];
   customTasks: any = {};
   listenEvents: false;
+  additionalAttributesAndFlags = {};
 
   checkResourceLoadedTimes = 0;
   resourceHtml5Loader = null;
@@ -56,7 +57,9 @@ export class CognifitSdkConfig {
     this.screensNotToShow = this.filterScreensNotToShow(extraConfiguration);
     this.scale = this.filterScale(extraConfiguration);
     this.listenEvents = typeof extraConfiguration.listenEvents === 'boolean' ? extraConfiguration.listenEvents : false;
+    this.additionalAttributesAndFlags = Object.assign({}, extraConfiguration.additionalAttributesAndFlags);
 
+    // Overriding the jsVersion is NOT recommended because older versions are not guaranteed to be available or work correctly beyond 30 days.
     if (typeof extraConfiguration.jsVersion === 'string' && extraConfiguration.jsVersion) {
       // tslint:disable-next-line:no-console
       console.log('*** JSDK *** CognifitSdkConfig.constructor 1');
@@ -302,6 +305,7 @@ export class CognifitSdkConfig {
       scale: this.scale,
       customTasks: this.customTasks,
       listenEvents: this.listenEvents,
+      additionalAttributesAndFlags: this.additionalAttributesAndFlags,
     };
 
     if (this.webhooks.length) {
