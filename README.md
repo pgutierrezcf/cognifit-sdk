@@ -47,6 +47,7 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
         customCss: '',                  // Url to custom css file.
         screensNotToShow: [],           // List of screens not to show after the session.
         preferredMobileOrientation: '', // '' (empty), 'landscape' or 'portrait'. This applies only on mobile browsers or embedded webviews
+        isFullscreenEnabled: true,      // Default true. If false the App will consider that the browser doesn't support fullscreen mode.
         scale: 100,                     // Default 800. Maximum value used to display values.
         listenEvents: true              // Default false. If true, events will be triggered during session life.
       }   
@@ -58,6 +59,9 @@ Connect your Angular web apps with CogniFit. Launch CogniFit session for your us
     
     });
     ```
+    
+    ---
+    Note about `isFullscreenEnabled`: if set to false our web App will behave as if the browser does not support fullscreen mode. This means there will **not** be a button to enter fullscreen mode. Additionally our code will **not** ask the user to enter fullscreen mode if the browser window is smaller than the recommended window size. The recommended window size is currently 890x600 pixels for desktop, and 568x320 pixels for mobile. A warning will be emitted in the browser's console if the window size goes below these values.
 
 - ### Launch session
 

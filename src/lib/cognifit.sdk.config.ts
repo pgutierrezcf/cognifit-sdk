@@ -15,6 +15,7 @@ export class CognifitSdkConfig {
   showResults: boolean;
   customCss: string[];
   preferredMobileOrientation: string; // portrait|landscape
+  isFullscreenEnabled: boolean;
   screensNotToShow: string[];
   scale: number;
 
@@ -54,6 +55,8 @@ export class CognifitSdkConfig {
     this.theme = this.filterTheme(extraConfiguration);
     this.customCss = this.filterCustomCss(extraConfiguration);
     this.preferredMobileOrientation = this.filterPreferredMobileOrientation(extraConfiguration);
+    this.isFullscreenEnabled =
+      typeof extraConfiguration.isFullscreenEnabled === 'boolean' ? extraConfiguration.isFullscreenEnabled : true;
     this.screensNotToShow = this.filterScreensNotToShow(extraConfiguration);
     this.scale = this.filterScale(extraConfiguration);
     this.listenEvents = typeof extraConfiguration.listenEvents === 'boolean' ? extraConfiguration.listenEvents : false;
@@ -301,6 +304,7 @@ export class CognifitSdkConfig {
       customCss: this.customCss,
       screensNotToShow: this.screensNotToShow,
       orientation: this.preferredMobileOrientation,
+      isFullscreenEnabled: this.isFullscreenEnabled,
       showResults: this.showResults,
       scale: this.scale,
       customTasks: this.customTasks,
